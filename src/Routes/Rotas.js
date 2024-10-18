@@ -25,10 +25,16 @@ const Drawer = createDrawerNavigator();
 
 export default function Rotas() {
 
-    const { logado } = useContext(AuthContext);
 
-    if (!logado) {
-        return (<Login />)
+    const [logado, setLogado] = useState(false);
+    const [cadastro, setCadastro] = useState(false);
+
+    if (logado == false && cadastro == false ) {
+        return (<Login setCadastro={setCadastro} setLogado={setLogado} />)
+    }
+
+    if (cadastro && logado == false ) {
+        return (<Cadastro setCadastro={setCadastro} setLogado={setLogado} />)
     }
 
     return (
