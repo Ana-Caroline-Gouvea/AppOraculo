@@ -1,8 +1,8 @@
-import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, StyleSheet } from 'react-native'
+import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, StyleSheet, ImageBackground } from 'react-native'
 import React, { useContext, useState } from 'react'
 import { AuthContext } from '../Context/AuthContext';
 
-export default function Login({setCadastro, setLogado}) {
+export default function Login({ setCadastro, setLogado }) {
 
 
     const [email, setEmail] = useState(false);
@@ -20,8 +20,9 @@ export default function Login({setCadastro, setLogado}) {
 
     return (
         <ScrollView contentContainerStyle={css.container}>
+            <Image source={require("../../assets/Logo-login.png")} style={css.imagemLogin} />
+            <Image source={require("../../assets/gradienteApp.jpg")} style={css.imagem} />
             <View style={css.box}>
-                {/* <Image source={require("../../assets/img/iCompass-logocomp.png")} style={css.logo} /> */}
                 <TextInput
                     inputMode="email"
                     placeholder="Email"
@@ -32,7 +33,7 @@ export default function Login({setCadastro, setLogado}) {
                 />
                 <TextInput
                     inputMode="text"
-                    placeholder="Password"
+                    placeholder="Senha"
                     secureTextEntry={true}
                     style={css.input}
                     value={senha}
@@ -58,7 +59,6 @@ export default function Login({setCadastro, setLogado}) {
                 }
 
             </View>
-
         </ScrollView>
     )
 }
@@ -68,23 +68,27 @@ const css = StyleSheet.create({
         width: "100%",
         justifyContent: "center",
         alignItems: "center",
-        alignContent: "center",
-        backgroundColor: "#191919"
+        alignContent: "center"
+    },
+    imagem: {
+        width: "100%",
+        height: "100%",
+        position: "absolute",
+        top: 0,
+        left: 0
     },
     logo: {
         width: "60%",
-        resizeMode: "contain"
+        resizeMode: "contain",
+        zIndex: -1
     },
     input: {
         width: "90%",
         height: 50,
         borderRadius: 10,
-        marginBottom: 18,
-        marginBottom: 18,
+        marginBottom: 25,
         padding: 15,
-        backgroundColor: "white",
-        color: "black",
-        backgroundColor: "white",
+        backgroundColor: 'rgba(255, 255, 255, 0.5)',
         color: "black",
     },
     semCadastro: {
@@ -112,18 +116,16 @@ const css = StyleSheet.create({
         fontWeight: "bold",
     },
     cadastroText: {
-        color: "#FF59B2",
+        color: "#9f00b4",
         fontWeight: "bold",
     },
     btnLogin: {
         width: "90%",
         height: 50,
-        borderWidth: 1,
         borderRadius: 10,
         marginTop: 45,
-        backgroundColor: "#FF59B2",
         marginTop: 45,
-        backgroundColor: "#FF59B2"
+        backgroundColor: "#bb1cff"
     },
     btnLoginText: {
         color: "white",
@@ -141,16 +143,6 @@ const css = StyleSheet.create({
         color: "white",
         textAlign: "center"
     },
-    box: {
-        width: "80%",
-        backgroundColor: "#232323",
-        justifyContent: "center",
-        alignItems: "center",
-        height: 460,
-        borderColor: "#FFD124",
-        borderWidth: 2,
-        borderRadius: 15,
-    },
     esqueciSenha: {
         width: "90%",
         justifyContent: "flex-start",
@@ -162,13 +154,11 @@ const css = StyleSheet.create({
     },
     box: {
         width: "80%",
-        backgroundColor: "#232323",
+        backgroundColor: 'rgba(255, 255, 255, 0.19)',
         justifyContent: "center",
         alignItems: "center",
         height: 460,
-        borderColor: "#FFD124",
-        borderWidth: 2,
-        borderRadius: 15,
+        borderRadius: 10,
     },
     esqueciSenha: {
         width: "90%",
@@ -176,7 +166,12 @@ const css = StyleSheet.create({
         alignItems: "flex-start",
     },
     esqueciSenhaText: {
-        color: "#FFD124",
+        color: "#9900ad",
         fontWeight: "bold",
+    },
+    imagemLogin: {
+        width: '15%',
+        height: '15%',
+        backgroundColor: 'red',
     }
 });
