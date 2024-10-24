@@ -68,19 +68,14 @@ const css = StyleSheet.create({
         width: "100%",
         justifyContent: "center",
         alignItems: "center",
-        alignContent: "center"
+        alignContent: "center",
     },
     imagem: {
         width: "100%",
         height: "100%",
         position: "absolute",
         top: 0,
-        left: 0
-    },
-    logo: {
-        width: "60%",
-        resizeMode: "contain",
-        zIndex: -1
+        left: 0,
     },
     input: {
         width: "90%",
@@ -170,8 +165,8 @@ const css = StyleSheet.create({
         fontWeight: "bold",
     },
     imagemLogin: {
-        width: '15%',
-        height: '15%',
-        backgroundColor: 'red',
+        width: '45%',
+        height: '25%',
+        zIndex: 2,
     }
 });
