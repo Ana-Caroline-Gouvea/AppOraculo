@@ -1,11 +1,11 @@
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { Button, View, Text } from 'react-native';
+import { Button, View } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { useContext } from 'react';
 import { AuthContext } from '../Context/AuthContext';
-import React, { useEffect, useState } from 'react'
+import Header from '../Components/HeaderOraculo'
+import { useState } from 'react';
+import Regras from '../Pages/Regras';
 
 import HeaderBusca from "../Components/HeaderBusca";
 
@@ -28,7 +28,7 @@ const Drawer = createDrawerNavigator();
 export default function Rotas() {
 
 
-    const [logado, setLogado] = useState(false);
+    const [logado, setLogado] = useState(true);
     const [cadastro, setCadastro] = useState(false);
 
     if (logado == false && cadastro == false ) {
@@ -50,7 +50,10 @@ export default function Rotas() {
             >
                 <Drawer.Screen name="Home" component={Home} />
                 <Drawer.Screen name="Notifications" component={NotificationsScreen} />
-                <Drawer.Screen name="Generos" component={Genero} />
+                <Drawer.Screen name="Regras" component={Regras} />
+                <Drawer.Screen name="Central de Denúncias" component={Centraldenuncias} />
+                
+                <Drawer.Screen name="Novidades" component={Novidades} />
             </Drawer.Navigator>
         </NavigationContainer>
       );
