@@ -1,12 +1,27 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { useState } from 'react';
+import { Button, View, Text } from 'react-native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { useContext } from 'react';
+import { AuthContext } from '../Context/AuthContext';
+import Header from '../Components/HeaderOraculo'
 
-import Cadastro from '../Pages/Cadastro';
+import HeaderBusca from "../Components/HeaderBusca";
+
+import Home from '../Pages/Home';
 import Login from '../Pages/Login';
+import Foto from '../Pages/Foto';
+function NotificationsScreen({ navigation }) {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Button onPress={() => navigation.goBack()} title="Go back home" />
+      </View>
+    );
+  }
+  
 
-const Tab = createBottomTabNavigator();
+const Drawer = createDrawerNavigator();
 
 export default function Rotas() {
 
@@ -23,36 +38,17 @@ export default function Rotas() {
     }
 
     return (
-        <NavigationContainer>
-            <Tab.Navigator
+        <NavigationContainer> 
+            <Drawer.Navigator 
+                initialRouteName="Home"
                 screenOptions={{
-                    headerShown: false,
-                    tabBarShowLabel: false,
-                    tabBarStyle: {
-                        backgroundColor: '#191919',
-                    },
-                    tabBarActiveTintColor: "white"
-                }}
+                    headerTitle: (props) => <HeaderBusca {...props} />,
+                    headerStyle: { backgroundColor: 'white', height: 100 }
+                }}               
             >
-                <Tab.Screen
-                    name="Login"
-                    component={Login}
-                    options={{
-                        tabBarIcon: ({ color, size }) => (
-                            <MaterialCommunityIcons name="home" color={color} size={size} />
-                        ),
-                    }}
-                />
-                <Tab.Screen
-                    name="Cadastro"
-                    component={Cadastro}
-                    options={{
-                        tabBarIcon: ({ color, size }) => (
-                            <MaterialCommunityIcons name="camera" color={color} size={size} />
-                        ),
-                    }}
-                />
-            </Tab.Navigator>
+                <Drawer.Screen name="Home" component={Home} />
+                <Drawer.Screen name="Notifications" component={NotificationsScreen} />
+            </Drawer.Navigator>
         </NavigationContainer>
-    )
+      );
 }
