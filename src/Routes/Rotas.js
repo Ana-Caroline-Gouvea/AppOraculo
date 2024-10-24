@@ -5,13 +5,15 @@ import { Button, View, Text } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { useContext } from 'react';
 import { AuthContext } from '../Context/AuthContext';
-import Header from '../Components/HeaderOraculo'
+import React, { useEffect, useState } from 'react'
 
 import HeaderBusca from "../Components/HeaderBusca";
 
 import Home from '../Pages/Home';
 import Login from '../Pages/Login';
-import Foto from '../Pages/Foto';
+import Cadastro from "../Pages/Cadastro";
+import Genero from "../Pages/Genero"
+
 function NotificationsScreen({ navigation }) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -48,6 +50,7 @@ export default function Rotas() {
             >
                 <Drawer.Screen name="Home" component={Home} />
                 <Drawer.Screen name="Notifications" component={NotificationsScreen} />
+                <Drawer.Screen name="Generos" component={Genero} />
             </Drawer.Navigator>
         </NavigationContainer>
       );
