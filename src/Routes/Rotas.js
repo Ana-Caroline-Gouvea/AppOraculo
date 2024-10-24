@@ -21,7 +21,7 @@ const Drawer = createDrawerNavigator();
 export default function Rotas() {
 
 
-    const [logado, setLogado] = useState(false);
+    const [logado, setLogado] = useState(true);
     const [cadastro, setCadastro] = useState(false);
 
     if (logado == false && cadastro == false ) {
@@ -43,6 +43,7 @@ export default function Rotas() {
             >
                 <Drawer.Screen name="Home" component={Home} />
                 <Drawer.Screen name="Notifications" component={NotificationsScreen} />
+                <Drawer.Screen name="Novidades" component={Novidades} />
             </Drawer.Navigator>
         </NavigationContainer>
       );
