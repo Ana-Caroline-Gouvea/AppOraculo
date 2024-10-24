@@ -30,6 +30,7 @@ export default function Login({ setCadastro, setLogado }) {
                     value={email}
                     onChangeText={(digitado) => setEmail(digitado)}
                     placeholderTextColor="#686D76"
+                    require
                 />
                 <TextInput
                     inputMode="text"
@@ -39,6 +40,7 @@ export default function Login({ setCadastro, setLogado }) {
                     value={senha}
                     onChangeText={(digitado) => setSenha(digitado)}
                     placeholderTextColor="#686D76"
+                    require
                 />
                 <View style={css.esqueciSenha}>
                     <Text style={css.esqueciSenhaText}>Esqueci minha senha!</Text>
@@ -78,37 +80,29 @@ const css = StyleSheet.create({
         left: 0,
     },
     input: {
-        width: "90%",
-        height: 50,
-        borderRadius: 10,
-        marginBottom: 25,
-        padding: 15,
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
-        color: "black",
+        width: '90%',
+        height: 45,
+        marginTop: 25,
+        padding: 10,
+        borderRadius: 3,
+        borderColor: '#8E44AD',
+        backgroundColor: '#ffff',
+        opacity: 0.5,
+        borderWidth: 0,
+        borderBottomWidth: 1,
     },
     semCadastro: {
         width: "90%",
         marginTop: 10,
-        justifyContent: "flex-start",
-        alignItems: "flex-start",
         display: "flex",
         flexDirection: "row",
-        gap: 40
+        gap: 8
 
     },
     semCadastroText: {
         color: "white",
-        fontWeight: "bold",
-        justifyContent: "flex-start",
-        alignItems: "flex-start",
         display: "flex",
         flexDirection: "row",
-        gap: 40
-
-    },
-    semCadastroText: {
-        color: "white",
-        fontWeight: "bold",
     },
     cadastroText: {
         color: "#9f00b4",
@@ -116,11 +110,12 @@ const css = StyleSheet.create({
     },
     btnLogin: {
         width: "90%",
-        height: 50,
-        borderRadius: 10,
-        marginTop: 45,
-        marginTop: 45,
-        backgroundColor: "#bb1cff"
+        height: 40,
+        backgroundColor: "#bb1cff",
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 40,
+        borderRadius: 3,
     },
     btnLoginText: {
         color: "white",
