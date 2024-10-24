@@ -1,7 +1,5 @@
 import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import { Button, View, Text } from 'react-native';
+import { Button, View } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { useContext } from 'react';
 import { AuthContext } from '../Context/AuthContext';
@@ -14,6 +12,7 @@ import HeaderBusca from "../Components/HeaderBusca";
 import Home from '../Pages/Home';
 import Login from '../Pages/Login';
 import Centraldenuncias from '../Pages/Centraldenuncias';
+import Cadastro from '../Pages/Cadastro';
 function NotificationsScreen({ navigation }) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -53,6 +52,7 @@ export default function Rotas() {
                 <Drawer.Screen name="Regras" component={Regras} />
                 <Drawer.Screen name="Central de Denúncias" component={Centraldenuncias} />
                 
+                <Drawer.Screen name="Novidades" component={Novidades} />
             </Drawer.Navigator>
         </NavigationContainer>
       );

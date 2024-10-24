@@ -1,77 +1,84 @@
 import React, { useState } from 'react'
 import { Text, TextInput, StyleSheet, TouchableOpacity, View, Image, Keyboard } from 'react-native'
 
-export default function Cadastro({ setLogado, setCadastro}) {
+export default function Cadastro({ setLogado, setCadastro }) {
 
-    const[ senha, setSenha ] = useState("");
-    const[ confirmarSenha, setConfirmarSenha] = useState("");
-    const[ cadastroConcluido, setCadastroConcluido ] = useState(true);
+    const [senha, setSenha] = useState("");
+    const [confirmarSenha, setConfirmarSenha] = useState("");
+    const [cadastroConcluido, setCadastroConcluido] = useState(true);
 
     function Cadastrar() {
-        if( senha == confirmarSenha) {
+        if (senha == confirmarSenha) {
             setCadastro(false);
-            setLogado(false);
+            setLogado(true);
             alert('Cadastro concluído com sucesso!');
         } else {
             alert('As senhas não coincidem!');
-          }
-        setCadastro( true );
+        }
+        setCadastro(true);
     }
 
     function Voltar() {
-        setCadastro( false );
-        setLogado( false ); 
-        
+        setCadastro(false);
+        setLogado(false);
+
     }
-  return (
-    <View style={css.View}>
-        <View style={css.boxCadastro}>
-            <View style={css.boxImg}>
-                {/* <Image style={css.imgLogo} source={ require ('../assets/violeta-logo.png')}/> */}
-            </View>
-            <Text style={css.title}>Cadastro</Text>
-        <TextInput 
-            style={css.input}
-            placeholder="nome"
-            />
-            <TextInput 
-            style={css.input}
-            placeholder="email"
-            />
-            <TextInput 
-            style={css.input}
-            placeholder="CPF"
-            />
-            <TextInput 
-            style={css.input}
-            placeholder="senha"
-            onChangeText={ (digitado) => setSenha(digitado)}
-            />
-            <TextInput
-            style={css.input}
-            placeholder="confirmar senha"
-            onChangeText={ (digitado) => setConfirmarSenha(digitado)}
-            />
-            <TouchableOpacity style={css.buttonCadastro} onPress={Cadastrar}>
-                <Text style={css.textCadastro} >Cadastrar-se</Text>
-            </TouchableOpacity>
-            <View style={css.boxLogin}>
-                <Text>Já tem uma conta?</Text>
-                <TouchableOpacity style={css.buttonLogin} onPress={Voltar}>
-                    <Text style={css.textLogar}>Logar</Text>
+    return (
+        <View style={css.View}>
+            <Image source={require("../../assets/gradienteApp.jpg")} style={css.imagem} />
+            <Image source={require("../../assets/Logo-login.png")} style={css.imagemLogin} />
+            <View style={css.boxCadastro}>
+                <TextInput
+                    style={css.input}
+                    placeholder="Nome"
+                    require
+                />
+                <TextInput
+                    style={css.input}
+                    placeholder="Apelido (opcional)"
+                />
+                <TextInput
+                    style={css.input}
+                    placeholder="Email"
+                    require
+                />
+                <TextInput
+                    style={css.input}
+                    placeholder="Data de Nascimento"
+                    require
+                />
+                <TextInput
+                    style={css.input}
+                    placeholder="Senha"
+                    onChangeText={(digitado) => setSenha(digitado)}
+                    require
+                />
+                <TextInput
+                    style={css.input}
+                    placeholder="Confirmar Senha"
+                    onChangeText={(digitado) => setConfirmarSenha(digitado)}
+                    require
+                />
+                <TouchableOpacity style={css.buttonCadastro} onPress={Cadastrar}>
+                    <Text style={css.textCadastro} >Cadastrar-se</Text>
                 </TouchableOpacity>
+                <View style={css.boxLogin}>
+                    <Text style={css.LoginTrueText}>Já tem uma conta?</Text>
+                    <TouchableOpacity style={css.buttonLogin} onPress={Voltar}>
+                        <Text style={css.textLogar}>Logar</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </View>
-    </View>
-  )
+    )
 }
 const css = StyleSheet.create({
     View: {
-        width: '100%',
-        height: '100%',
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+        flexGrow: 1,
+        width: "100%",
+        justifyContent: "center",
+        alignItems: "center",
+        alignContent: "center",
     },
     title: {
         fontSize: 17,
@@ -93,30 +100,23 @@ const css = StyleSheet.create({
         borderBottomWidth: 1,
     },
     boxCadastro: {
-        width: 350,
-        height: 600,
-        backgroundColor: "#F1CEFF",
+        width: '87%',
+        height: 570,
         borderRadius: 15,
-        borderColor: '#DC4EFF',
-        borderWidth: 1.5,
+        backgroundColor: 'rgba(255, 255, 255, 0.19)',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginTop: 160
     },
     imgLogo: {
         resizeMode: 'contain',
-        width:  700,
+        width: 700,
         height: 100,
-    },
-    boxImg: {
-        width: '72%',
-        height: 60,
-        alignItems: "center",
-        justifyContent: "center"
     },
     buttonCadastro: {
         width: "90%",
         height: 40,
-        backgroundColor: '#D87CFF',
+        backgroundColor: "#bb1cff",
         alignItems: 'center',
         justifyContent: 'center',
         margin: 20,
@@ -137,6 +137,24 @@ const css = StyleSheet.create({
     },
     textLogar: {
         color: '#B221BE',
+        fontWeight: 'bold',
         fontSize: 16,
+    },
+    imagem: {
+        width: "100%",
+        height: "100%",
+        position: "absolute",
+        top: 0,
+        left: 0,
+    },
+    LoginTrueText: {
+        color: "white"
+    },
+    imagemLogin: {
+        width: '45%',
+        height: '25%',
+        position: 'absolute',
+        top: '2%',
+        zIndex: 2,
     }
 })

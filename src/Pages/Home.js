@@ -1,12 +1,11 @@
 import React from 'react'
 import { Text } from 'react-native'
+import HeaderBusca from '../Components/HeaderBusca'
 
-function Home() {
+export default function Home() {
   return (
     <>
-    <Text>oi</Text>
+      
     </>
   )
 }
-
-export default Home
