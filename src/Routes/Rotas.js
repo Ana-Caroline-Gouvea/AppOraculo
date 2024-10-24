@@ -6,12 +6,14 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { useContext } from 'react';
 import { AuthContext } from '../Context/AuthContext';
 import Header from '../Components/HeaderOraculo'
+import { useState } from 'react';
+import Regras from '../Pages/Regras';
 
 import HeaderBusca from "../Components/HeaderBusca";
 
 import Home from '../Pages/Home';
 import Login from '../Pages/Login';
-import Foto from '../Pages/Foto';
+import Centraldenuncias from '../Pages/Centraldenuncias';
 function NotificationsScreen({ navigation }) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -26,7 +28,7 @@ const Drawer = createDrawerNavigator();
 export default function Rotas() {
 
 
-    const [logado, setLogado] = useState(false);
+    const [logado, setLogado] = useState(true);
     const [cadastro, setCadastro] = useState(false);
 
     if (logado == false && cadastro == false ) {
@@ -48,6 +50,9 @@ export default function Rotas() {
             >
                 <Drawer.Screen name="Home" component={Home} />
                 <Drawer.Screen name="Notifications" component={NotificationsScreen} />
+                <Drawer.Screen name="Regras" component={Regras} />
+                <Drawer.Screen name="Central de Denúncias" component={Centraldenuncias} />
+                
             </Drawer.Navigator>
         </NavigationContainer>
       );
