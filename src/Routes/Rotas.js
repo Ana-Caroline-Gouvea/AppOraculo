@@ -6,11 +6,13 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { useState } from 'react';
 import { AuthContext } from '../Context/AuthContext';
 import Header from '../Components/HeaderOraculo'
+import Chat from '../Pages/chat2'
 
 import HeaderBusca from "../Components/HeaderBusca";
 
 import Home from '../Pages/Home';
 import Login from '../Pages/Login';
+import Cadastro from '../Pages/Cadastro';
 import Novidades from '../Pages/Novidades';
 function NotificationsScreen({ navigation }) {
     return (
@@ -49,6 +51,7 @@ export default function Rotas() {
                 <Drawer.Screen name="Home" component={Home} />
                 <Drawer.Screen name="Notifications" component={NotificationsScreen} />
                 <Drawer.Screen name="Novidades" component={Novidades} />
+                <Drawer.Screen name="Chat" component={Chat} />
             </Drawer.Navigator>
         </NavigationContainer>
       );

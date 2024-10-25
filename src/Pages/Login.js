@@ -2,7 +2,7 @@ import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, StyleSheet 
 import React, { useContext, useState } from 'react'
 import { AuthContext } from '../Context/AuthContext';
 
-export default function Login({setCadastro, setLogado}) {
+export default function Login({ setCadastro, setLogado }) {
 
 
     const [email, setEmail] = useState(false);
@@ -20,8 +20,9 @@ export default function Login({setCadastro, setLogado}) {
 
     return (
         <ScrollView contentContainerStyle={css.container}>
+            <Image source={require("../../assets/Logo-login.jpg")} style={css.imagemLogin} />
+            <Image source={require("../../assets/gradienteApp.jpg")} style={css.imagem} />
             <View style={css.box}>
-                {/* <Image source={require("../../assets/img/iCompass-logocomp.png")} style={css.logo} /> */}
                 <TextInput
                     inputMode="email"
                     placeholder="Email"
@@ -29,15 +30,17 @@ export default function Login({setCadastro, setLogado}) {
                     value={email}
                     onChangeText={(digitado) => setEmail(digitado)}
                     placeholderTextColor="#686D76"
+                    require
                 />
                 <TextInput
                     inputMode="text"
-                    placeholder="Password"
+                    placeholder="Senha"
                     secureTextEntry={true}
                     style={css.input}
                     value={senha}
                     onChangeText={(digitado) => setSenha(digitado)}
                     placeholderTextColor="#686D76"
+                    require
                 />
                 <View style={css.esqueciSenha}>
                     <Text style={css.esqueciSenhaText}>Esqueci minha senha!</Text>
@@ -58,7 +61,6 @@ export default function Login({setCadastro, setLogado}) {
                 }
 
             </View>
-
         </ScrollView>
     )
 }
@@ -69,61 +71,51 @@ const css = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         alignContent: "center",
-        backgroundColor: "#191919"
     },
-    logo: {
-        width: "60%",
-        resizeMode: "contain"
+    imagem: {
+        width: "100%",
+        height: "100%",
+        position: "absolute",
+        top: 0,
+        left: 0,
     },
     input: {
-        width: "90%",
-        height: 50,
-        borderRadius: 10,
-        marginBottom: 18,
-        marginBottom: 18,
-        padding: 15,
-        backgroundColor: "white",
-        color: "black",
-        backgroundColor: "white",
-        color: "black",
+        width: '90%',
+        height: 45,
+        marginTop: 25,
+        padding: 10,
+        borderRadius: 3,
+        borderColor: '#8E44AD',
+        backgroundColor: '#ffff',
+        opacity: 0.5,
+        borderWidth: 0,
+        borderBottomWidth: 1,
     },
     semCadastro: {
         width: "90%",
         marginTop: 10,
-        justifyContent: "flex-start",
-        alignItems: "flex-start",
         display: "flex",
         flexDirection: "row",
-        gap: 40
+        gap: 8
 
     },
     semCadastroText: {
         color: "white",
-        fontWeight: "bold",
-        justifyContent: "flex-start",
-        alignItems: "flex-start",
         display: "flex",
         flexDirection: "row",
-        gap: 40
-
-    },
-    semCadastroText: {
-        color: "white",
-        fontWeight: "bold",
     },
     cadastroText: {
-        color: "#FF59B2",
+        color: "#9f00b4",
         fontWeight: "bold",
     },
     btnLogin: {
         width: "90%",
-        height: 50,
-        borderWidth: 1,
-        borderRadius: 10,
-        marginTop: 45,
-        backgroundColor: "#FF59B2",
-        marginTop: 45,
-        backgroundColor: "#FF59B2"
+        height: 40,
+        backgroundColor: "#bb1cff",
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 40,
+        borderRadius: 3,
     },
     btnLoginText: {
         color: "white",
@@ -141,16 +133,6 @@ const css = StyleSheet.create({
         color: "white",
         textAlign: "center"
     },
-    box: {
-        width: "80%",
-        backgroundColor: "#232323",
-        justifyContent: "center",
-        alignItems: "center",
-        height: 460,
-        borderColor: "#FFD124",
-        borderWidth: 2,
-        borderRadius: 15,
-    },
     esqueciSenha: {
         width: "90%",
         justifyContent: "flex-start",
@@ -162,13 +144,11 @@ const css = StyleSheet.create({
     },
     box: {
         width: "80%",
-        backgroundColor: "#232323",
+        backgroundColor: 'rgba(255, 255, 255, 0.19)',
         justifyContent: "center",
         alignItems: "center",
         height: 460,
-        borderColor: "#FFD124",
-        borderWidth: 2,
-        borderRadius: 15,
+        borderRadius: 10,
     },
     esqueciSenha: {
         width: "90%",
@@ -176,7 +156,12 @@ const css = StyleSheet.create({
         alignItems: "flex-start",
     },
     esqueciSenhaText: {
-        color: "#FFD124",
+        color: "#9900ad",
         fontWeight: "bold",
+    },
+    imagemLogin: {
+        width: '45%',
+        height: '25%',
+        zIndex: 2,
     }
 });
