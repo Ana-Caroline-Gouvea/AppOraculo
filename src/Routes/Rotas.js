@@ -1,19 +1,23 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { Button, View } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { useContext } from 'react';
+import { useState } from 'react';
 import { AuthContext } from '../Context/AuthContext';
 import Header from '../Components/HeaderOraculo'
-import { useState } from 'react';
+import Chat from '../Pages/chat2'
 import Regras from '../Pages/Regras';
 import Suporte from '../Pages/Suporte';
 import HeaderBusca from "../Components/HeaderBusca";
 
 import Home from '../Pages/Home';
 import Login from '../Pages/Login';
-import Centraldenuncias from '../Pages/Centraldenuncias';
 import Cadastro from '../Pages/Cadastro';
+import Novidades from '../Pages/Novidades';
+import Cadastro from "../Pages/Cadastro";
+import Genero from "../Pages/Genero"
+import Centraldenuncias from '../Pages/Centraldenuncias'
 import Novidades from '../Pages/Novidades'
+import Postagem from '../Pages/Postagem';
 function NotificationsScreen({ navigation }) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -28,7 +32,7 @@ const Drawer = createDrawerNavigator();
 export default function Rotas() {
 
 
-    const [logado, setLogado] = useState(true);
+    const [logado, setLogado] = useState(false);
     const [cadastro, setCadastro] = useState(false);
 
     if (logado == false && cadastro == false ) {
@@ -52,9 +56,10 @@ export default function Rotas() {
                 <Drawer.Screen name="Notifications" component={NotificationsScreen} />
                 <Drawer.Screen name="Regras" component={Regras} />
                 <Drawer.Screen name="Central de Denúncias" component={Centraldenuncias} />
-                
+                <Drawer.Screen name="Postagens" component={Postagem} />
                 <Drawer.Screen name="Novidades" component={Novidades} />
                 <Drawer.Screen name="Suporte" component={Suporte} />
+                <Drawer.Screen name="Chat" component={Chat} />
             </Drawer.Navigator>
         </NavigationContainer>
       );
