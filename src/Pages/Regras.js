@@ -213,8 +213,10 @@ const css = StyleSheet.create({
         marginBottom: 5,
     },
     bullet: {
-        fontSize: 14,
-        marginRight: 5,
+        fontSize:16,
+        marginRight: 6,
+        color: "#7C25AE",
+         fontWeight:"bold"
     },
     text: {
         fontSize: 16,

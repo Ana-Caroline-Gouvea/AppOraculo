@@ -6,13 +6,14 @@ import { AuthContext } from '../Context/AuthContext';
 import Header from '../Components/HeaderOraculo'
 import { useState } from 'react';
 import Regras from '../Pages/Regras';
-
+import Suporte from '../Pages/Suporte';
 import HeaderBusca from "../Components/HeaderBusca";
 
 import Home from '../Pages/Home';
 import Login from '../Pages/Login';
 import Centraldenuncias from '../Pages/Centraldenuncias';
 import Cadastro from '../Pages/Cadastro';
+import Novidades from '../Pages/Novidades'
 function NotificationsScreen({ navigation }) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -53,6 +54,7 @@ export default function Rotas() {
                 <Drawer.Screen name="Central de Denúncias" component={Centraldenuncias} />
                 
                 <Drawer.Screen name="Novidades" component={Novidades} />
+                <Drawer.Screen name="Suporte" component={Suporte} />
             </Drawer.Navigator>
         </NavigationContainer>
       );
