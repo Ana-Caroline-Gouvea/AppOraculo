@@ -20,9 +20,10 @@ export default function Login({ setCadastro, setLogado }) {
 
     return (
         <ScrollView contentContainerStyle={css.container}>
-            <Image source={require("../../assets/Logo-login.jpg")} style={css.imagemLogin} />
+            <Image source={require("../../assets/Logo-login.png")} style={css.imagemLogin} />
             <Image source={require("../../assets/gradienteApp.jpg")} style={css.imagem} />
             <View style={css.box}>
+            <Text style={css.title} >Seja bem-vindo (a) ao Oráculo!</Text>
                 <TextInput
                     inputMode="email"
                     placeholder="Email"
@@ -163,5 +164,11 @@ const css = StyleSheet.create({
         width: '45%',
         height: '25%',
         zIndex: 2,
+    },
+    title: {
+        fontSize: 17,
+        color: '#9347B7',
+        fontWeight: 'bold',
+        marginBottom: 30
     }
 });

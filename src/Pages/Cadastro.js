@@ -2,71 +2,72 @@ import React, { useState } from 'react';
 import { Text, TextInput, StyleSheet, TouchableOpacity, View, Image, Alert } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
 
-export default function Cadastro({ setLogado, setCadastro, setProfilePic }) {
+export default function Cadastro({ setLogado, setCadastro }) {
+
     const [senha, setSenha] = useState("");
     const [confirmarSenha, setConfirmarSenha] = useState("");
-    const [profilePicUri, setProfilePicUri] = useState(null); // Armazena a URI da imagem
+    const [cadastroConcluido, setCadastroConcluido] = useState(true);
 
-    const Cadastrar = () => {
-        if (senha === confirmarSenha) {
-            // Chama a função para definir a imagem de perfil
-            setProfilePic(profilePicUri);
+    function Cadastrar() {
+        if (senha == confirmarSenha) {
             setCadastro(false);
             setLogado(true);
-            Alert.alert('Cadastro concluído com sucesso!');
+            alert('Cadastro concluído com sucesso!');
         } else {
-            Alert.alert('As senhas não coincidem!');
+            alert('As senhas não coincidem!');
         }
-    };
+        setCadastro(true);
+    }
 
-    const Voltar = () => {
+    function Voltar() {
         setCadastro(false);
         setLogado(false);
-    };
 
-    const selecionarFoto = () => {
-        launchImageLibrary({ mediaType: 'photo' }, (response) => {
-            if (response.didCancel) {
-                console.log('Usuário cancelou a seleção de imagem');
-            } else if (response.error) {
-                console.log('Erro ao selecionar a imagem:', response.error);
-            } else {
-                setProfilePicUri(response.assets[0].uri); // Armazena a URI da imagem selecionada
-            }
-        });
-    };
-
-
+    }
     return (
         <View style={css.View}>
-
-
             <Image source={require("../../assets/gradienteApp.jpg")} style={css.imagem} />
-            <Image source={require("../../assets/Logo-login.jpg")} style={css.imagemLogin} />
+            <Image source={require("../../assets/Logo-login.png")} style={css.imagemLogin} />
             <View style={css.boxCadastro}>
-                <TextInput style={css.input} placeholder="Nome" require />
-                <TextInput style={css.input} placeholder="Apelido (opcional)" />
-                <TextInput style={css.input} placeholder="Email" require />
-                <TextInput style={css.input} placeholder="Data de Nascimento" require />
-                <TextInput style={css.input} placeholder="Senha" onChangeText={setSenha} require />
-                <TextInput style={css.input} placeholder="Confirmar Senha" onChangeText={setConfirmarSenha} require />
-
+            <Text style={css.title} >Junte-se ao Oráculo!</Text>
+                <TextInput
+                    style={css.input}
+                    placeholder="Nome"
+                    require
+                />
+                <TextInput
+                    style={css.input}
+                    placeholder="Apelido (opcional)"
+                />
+                <TextInput
+                    style={css.input}
+                    placeholder="Email"
+                    require
+                />
+                <TextInput
+                    style={css.input}
+                    placeholder="Data de Nascimento"
+                    require
+                />
+                <TextInput
+                    style={css.input}
+                    placeholder="Senha"
+                    onChangeText={(digitado) => setSenha(digitado)}
+                    require
+                />
+                <TextInput
+                    style={css.input}
+                    placeholder="Confirmar Senha"
+                    onChangeText={(digitado) => setConfirmarSenha(digitado)}
+                    require
+                />
                 <TouchableOpacity style={css.buttonCadastro} onPress={Cadastrar}>
-                    <Text style={css.textCadastro}>Cadastrar-se</Text>
+                    <Text style={css.textCadastro} >Cadastrar-se</Text>
                 </TouchableOpacity>
-
                 <View style={css.boxLogin}>
                     <Text style={css.LoginTrueText}>Já tem uma conta?</Text>
                     <TouchableOpacity style={css.buttonLogin} onPress={Voltar}>
                         <Text style={css.textLogar}>Logar</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={css.foto} onPress={selecionarFoto}>
-                        {profilePicUri ? (
-                            <Image source={{ uri: profilePicUri }} style={{ width: 40, height: 40, borderRadius: 20 }} />
-                        ) : (
-                            <Text style={{ color: 'white' }}>Selecionar Foto</Text>
-                        )}
                     </TouchableOpacity>
                 </View>
             </View>
@@ -74,7 +75,7 @@ export default function Cadastro({ setLogado, setCadastro, setProfilePic }) {
 
 
         </View>
-    );
+    )
 }
 
 const css = StyleSheet.create({
@@ -134,6 +135,7 @@ const css = StyleSheet.create({
     },
     boxLogin: {
         flexDirection: 'row',
+        gap: 8
     },
     buttonLogin: {
         height: 21,
@@ -161,10 +163,5 @@ const css = StyleSheet.create({
         position: 'absolute',
         top: '2%',
         zIndex: 2,
-    },
-    foto: {
-        width: '40%',
-        height: '100%',
-        backgroundColor: 'red'
     }
 });
