@@ -5,7 +5,6 @@ import HeaderBusca from '../Components/HeaderBusca'
 export default function Home() {
   return (
     <>
-      
     </>
   )
 }

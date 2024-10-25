@@ -28,6 +28,7 @@ export default function Cadastro({ setLogado, setCadastro }) {
             <Image source={require("../../assets/gradienteApp.jpg")} style={css.imagem} />
             <Image source={require("../../assets/Logo-login.png")} style={css.imagemLogin} />
             <View style={css.boxCadastro}>
+            <Text style={css.title} >Junte-se ao Oráculo!</Text>
                 <TextInput
                     style={css.input}
                     placeholder="Nome"
@@ -129,6 +130,7 @@ const css = StyleSheet.create({
     },
     boxLogin: {
         flexDirection: 'row',
+        gap: 8
     },
     buttonLogin: {
         height: 21,

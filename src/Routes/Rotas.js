@@ -7,6 +7,7 @@ import HeaderBusca from "../Components/HeaderBusca";
 import Home from '../Pages/Home';
 import Login from '../Pages/Login';
 import Cadastro from '../Pages/Cadastro';
+import Novidades from '../Pages/Novidades';
 function NotificationsScreen({ navigation }) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -21,7 +22,7 @@ const Drawer = createDrawerNavigator();
 export default function Rotas() {
 
 
-    const [logado, setLogado] = useState(true);
+    const [logado, setLogado] = useState(false);
     const [cadastro, setCadastro] = useState(false);
 
     if (logado == false && cadastro == false ) {
