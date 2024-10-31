@@ -13,10 +13,9 @@ import Home from '../Pages/Home';
 import Login from '../Pages/Login';
 import Cadastro from '../Pages/Cadastro';
 import Novidades from '../Pages/Novidades';
-import Cadastro from "../Pages/Cadastro";
-import Genero from "../Pages/Genero"
-import Centraldenuncias from '../Pages/Centraldenuncias'
-import Novidades from '../Pages/Novidades'
+import Genero from "../Pages/Genero";
+import Centraldenuncias from '../Pages/Centraldenuncias';
+import Novidades from '../Pages/Novidades';
 import Postagem from '../Pages/Postagem';
 function NotificationsScreen({ navigation }) {
     return (
