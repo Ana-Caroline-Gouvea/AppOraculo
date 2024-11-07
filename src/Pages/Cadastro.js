@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
-import { Text, TextInput, StyleSheet, TouchableOpacity, View, Image, Keyboard } from 'react-native'
+import React, { useState } from 'react';
+import { Text, TextInput, StyleSheet, TouchableOpacity, View, Image, Alert } from 'react-native';
+import { launchImageLibrary } from 'react-native-image-picker';
 
 export default function Cadastro({ setLogado, setCadastro }) {
 
@@ -70,9 +71,13 @@ export default function Cadastro({ setLogado, setCadastro }) {
                     </TouchableOpacity>
                 </View>
             </View>
+
+
+
         </View>
     )
 }
+
 const css = StyleSheet.create({
     View: {
         flexGrow: 1,
@@ -159,4 +164,4 @@ const css = StyleSheet.create({
         top: '2%',
         zIndex: 2,
     }
-})
+});

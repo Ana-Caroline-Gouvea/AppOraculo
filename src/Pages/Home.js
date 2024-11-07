@@ -1,7 +1,6 @@
-import { View, Text, StyleSheet, FlatList, ActivityIndicator } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import { useFocusEffect } from '@react-navigation/native';
-import HeaderBusca from '../Components/HeaderBusca';
+import React from 'react'
+import { Text, StyleSheet, View} from 'react-native'
+import HeaderBusca from '../Components/HeaderBusca'
 
 
 export default function Home() {
@@ -10,6 +9,7 @@ export default function Home() {
   return (
     <View style={css.container}>
       <HeaderBusca />
+      
     </View>
   )
 }
