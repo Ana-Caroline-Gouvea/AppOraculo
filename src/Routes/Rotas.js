@@ -9,12 +9,10 @@ import HeaderBusca from "../Components/HeaderBusca";
 import Home from '../Pages/Home';
 import Login from '../Pages/Login';
 import Cadastro from '../Pages/Cadastro';
-import Novidades from '../Pages/Novidades';
-import Cadastro from "../Pages/Cadastro";
-import Genero from "../Pages/Genero"
-import Centraldenuncias from '../Pages/Centraldenuncias'
+import Centraldenuncias from '../Pages/Centraldenuncias';
 import Novidades from '../Pages/Novidades'
 import Postagem from '../Pages/Postagem';
+import Perfil from '../Pages/Perfil';
 function NotificationsScreen({ navigation }) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -29,7 +27,7 @@ const Drawer = createDrawerNavigator();
 export default function Rotas() {
 
 
-    const [logado, setLogado] = useState(false);
+    const [logado, setLogado] = useState(true);
     const [cadastro, setCadastro] = useState(false);
 
     if (logado == false && cadastro == false ) {
@@ -55,6 +53,7 @@ export default function Rotas() {
                 <Drawer.Screen name="Central de Denúncias" component={Centraldenuncias} />
                 <Drawer.Screen name="Postagens" component={Postagem} />
                 <Drawer.Screen name="Novidades" component={Novidades} />
+                <Drawer.Screen name="Perfil" component={Perfil} />
             </Drawer.Navigator>
         </NavigationContainer>
       );

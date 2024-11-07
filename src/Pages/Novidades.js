@@ -1,6 +1,6 @@
 import React from 'react'
 import HeaderBusca from '../Components/HeaderBusca'
-import { View } from 'react-native'
+import { View, Text, StyleSheet } from 'react-native'
 
 export default function Novidades() {
   return (
@@ -12,3 +12,6 @@ export default function Novidades() {
     </>
   )
 }
+const css = StyleSheet.create({
+})
+
