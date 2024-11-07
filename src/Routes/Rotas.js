@@ -4,7 +4,6 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { useState } from 'react';
 import { AuthContext } from '../Context/AuthContext';
 import Chat from '../Pages/chat2';
-import Chat from '../Pages/chat2'
 import Regras from '../Pages/Regras';
 import Suporte from '../Pages/Suporte';
 import HeaderBusca from "../Components/HeaderBusca";
@@ -17,6 +16,8 @@ import Postagem from '../Pages/Postagem';
 import Eventos from '../Pages/Eventos'
 import { ImportExport } from 'aws-sdk';
 import MaisComentados from '../Pages/MaisComentados';
+import FabButton from '../Components/FabButton';
+import Novidades from '../Pages/Novidades';
 
 function NotificationsScreen({ navigation }) {
     return (
@@ -63,6 +64,7 @@ export default function Rotas() {
                 <Drawer.Screen name="Eventos" component={Eventos} />
                 <Drawer.Screen name="Mais Comentados" component={MaisComentados} />
             </Drawer.Navigator>
+            <FabButton></FabButton>
         </NavigationContainer>
         
       );
