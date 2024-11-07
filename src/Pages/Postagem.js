@@ -4,10 +4,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import PostComponente from '../Components/PostComponente'
 import { FlatList } from 'react-native-gesture-handler'
 
-
 export default function Postagem() {
-
-
 
     const [postagens, setPostagens] = useState([]);
 
@@ -28,6 +25,7 @@ export default function Postagem() {
 
     return (
         <View style={css.main}>
+            
             <View style={css.boxtitulo}>
                 <Text style={css.titulo}>Postagens</Text>
             </View>
@@ -39,9 +37,12 @@ export default function Postagem() {
                     style={css.flatlist}
                 />
             }
+            
         </View>
+
     )
 }
+
 
 const css = StyleSheet.create({
     main: {

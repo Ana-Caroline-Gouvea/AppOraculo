@@ -1,7 +1,7 @@
-import React from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
+import React, { useState } from 'react'
+import { Image, Pressable, StyleSheet, Text, View } from 'react-native'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import IconButton from './IconButton';
 
 export default function PostComponente({ item }) {
     return (
@@ -19,16 +19,16 @@ export default function PostComponente({ item }) {
                         <Image source={{ uri: item.postagemImg }} style={css.fotopost}></Image>
                     }
                 </View>
-
                 <View style={css.flexIcons}>
-                    <MaterialCommunityIcons name="cards-heart-outline" style={css.Icon} />
+                    <IconButton></IconButton>
                     <MaterialCommunityIcons name="share-variant" style={css.Icon} />
                 </View>
             </View>
             <View style={css.linha}></View>
         </View>
     )
-}
+};
+
 
 const css = StyleSheet.create({
     main: {

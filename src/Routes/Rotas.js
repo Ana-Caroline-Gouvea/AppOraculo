@@ -1,9 +1,8 @@
 import { NavigationContainer } from '@react-navigation/native';
-import { Button, View } from 'react-native';
+import { Button, View, Text,  } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { useState } from 'react';
 import { AuthContext } from '../Context/AuthContext';
-import Header from '../Components/HeaderOraculo'
 import Chat from '../Pages/chat2'
 import Regras from '../Pages/Regras';
 import Suporte from '../Pages/Suporte';
@@ -12,11 +11,13 @@ import HeaderBusca from "../Components/HeaderBusca";
 import Home from '../Pages/Home';
 import Login from '../Pages/Login';
 import Cadastro from '../Pages/Cadastro';
-import Novidades from '../Pages/Novidades';
 import Genero from "../Pages/Genero";
 import Centraldenuncias from '../Pages/Centraldenuncias';
 import Novidades from '../Pages/Novidades';
 import Postagem from '../Pages/Postagem';
+import { ImportExport } from 'aws-sdk';
+import MaisComentados from '../Pages/MaisComentados';
+
 function NotificationsScreen({ navigation }) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -25,13 +26,13 @@ function NotificationsScreen({ navigation }) {
     );
   }
   
-
+ 
 const Drawer = createDrawerNavigator();
 
 export default function Rotas() {
 
 
-    const [logado, setLogado] = useState(false);
+    const [logado, setLogado] = useState(true);
     const [cadastro, setCadastro] = useState(false);
 
     if (logado == false && cadastro == false ) {
@@ -43,6 +44,7 @@ export default function Rotas() {
     }
 
     return (
+    
         <NavigationContainer> 
             <Drawer.Navigator 
                 initialRouteName="Home"
@@ -59,7 +61,9 @@ export default function Rotas() {
                 <Drawer.Screen name="Novidades" component={Novidades} />
                 <Drawer.Screen name="Suporte" component={Suporte} />
                 <Drawer.Screen name="Chat" component={Chat} />
+                <Drawer.Screen name="Mais Comentados" component={MaisComentados} />
             </Drawer.Navigator>
         </NavigationContainer>
+        
       );
 }
