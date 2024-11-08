@@ -1,8 +1,21 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableWithoutFeedback, Animated } from 'react-native';
+import React, { Component, useState }from 'react';
+import { StyleSheet, Text, View, TouchableWithoutFeedback, Animated, Alert } from 'react-native';
 import { AntDesign, Entypo, Ionicons,  MaterialCommunityIcons, MaterialIcons   } from '@expo/vector-icons'
+import Postagem from '../Pages/Postagem';
+import { useNavigation } from '@react-navigation/native';
 
-export default class FabButton extends Component{
+
+export default function FabButonTeste(props)
+{
+    const navigation = useNavigation();
+    return(
+        <FabButton {...props} navigation={navigation} />
+    )
+}
+
+class FabButton extends Component{
+
+
 
     animation = new Animated.Value(0);
     toggleMenu = () =>  {
@@ -19,7 +32,11 @@ export default class FabButton extends Component{
 
 
 
-    render(){
+    render(){ 
+
+        const {navigation} = this.props;
+
+
 
         const chatStyle ={
             transform:[
@@ -80,7 +97,7 @@ export default class FabButton extends Component{
                 }
             ]
         }
-
+  
 
         const rotation = {
             transform:[
@@ -92,29 +109,30 @@ export default class FabButton extends Component{
                 }
             ]
         }
+        
         return (
             <View style={[css.Container, this.props.style]}>
-                <TouchableWithoutFeedback>
+                <TouchableWithoutFeedback onPress={() => navigation.navigate( "Postagens" ) }>
                     <Animated.View style={[css.button, css.submenu, postStyle]}>
                     <MaterialIcons name="post-add" size={26} color="white" />
                     </Animated.View>
                 </TouchableWithoutFeedback>
-                <TouchableWithoutFeedback>
+                <TouchableWithoutFeedback  onPress={() => navigation.navigate( "Eventos" ) }>
                     <Animated.View style={[css.button, css.submenu, eventStyle]}>
                     <Ionicons name="today" size={26} color="white" />
                     </Animated.View>
                 </TouchableWithoutFeedback>
-                <TouchableWithoutFeedback>
+                <TouchableWithoutFeedback onPress={() => navigation.navigate( "Novidades" ) }>
                     <Animated.View style={[css.button, css.submenu, newStyle]}>
                     <MaterialCommunityIcons name="new-box" size={26} color="white" />
                     </Animated.View>
                 </TouchableWithoutFeedback>
-                <TouchableWithoutFeedback>
+                <TouchableWithoutFeedback onPress={() => navigation.navigate( "Mais Comentados" ) }>
                     <Animated.View style={[css.button, css.submenu, trendStyle]}>
                     <Ionicons name="trending-up" size={26} color="white" />
                     </Animated.View>
                 </TouchableWithoutFeedback>
-                <TouchableWithoutFeedback>
+                <TouchableWithoutFeedback onPress={() => navigation.navigate( "Chat" ) }>
                     <Animated.View style={[css.button, css.submenu, chatStyle]}>
                     <Ionicons name="chatbox-ellipses" size={26} color="white" />
                     </Animated.View>
@@ -129,6 +147,9 @@ export default class FabButton extends Component{
             </View>
         );
     }
+}
+const PostagemPress = () => {
+    <Postagem></Postagem>
 }
 const css = StyleSheet.create({
     Container:{
@@ -154,4 +175,5 @@ const css = StyleSheet.create({
         borderRadius: 50 / 2,
         backgroundColor: '#8224AE'
     }
-})
+});
+

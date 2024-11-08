@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Text, TextInput, StyleSheet, TouchableOpacity, View, Image, Alert } from 'react-native';
-import { launchImageLibrary } from 'react-native-image-picker';
 
 export default function Cadastro({ setLogado, setCadastro }) {
 
