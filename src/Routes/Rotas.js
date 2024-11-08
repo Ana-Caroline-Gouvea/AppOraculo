@@ -1,5 +1,5 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { Button, View, Text,  } from 'react-native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { Button, View, Text, StyleSheet,  } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { useState } from 'react';
 import { AuthContext } from '../Context/AuthContext';
@@ -19,6 +19,7 @@ import MaisComentados from '../Pages/MaisComentados';
 import FabButton from '../Components/FabButton';
 import Novidades from '../Pages/Novidades';
 import SelecionarComp from '../Components/SelecionarComp';
+import FabButonTeste from '../Components/FabButton';
 
 function NotificationsScreen({ navigation }) {
     return (
@@ -35,6 +36,7 @@ export default function Rotas() {
 
     const [logado, setLogado] = useState(true);
     const [cadastro, setCadastro] = useState(false);
+    const [postagem, setPostagem] = useState(false);
 
     if (logado == false && cadastro == false ) {
         return (<Login setCadastro={setCadastro} setLogado={setLogado} />)
@@ -43,7 +45,7 @@ export default function Rotas() {
     if (cadastro && logado == false ) {
         return (<Cadastro setCadastro={setCadastro} setLogado={setLogado} />)
     }
-
+    
     return (
     
         <NavigationContainer> 
@@ -52,13 +54,10 @@ export default function Rotas() {
                 screenOptions={{
                     headerTitle: (props) => <HeaderBusca {...props} />,
                     headerStyle: { backgroundColor: 'white', height: 100 }
-                }}               
-            >
+                }}>
                 <Drawer.Screen name="Home" component={Home} />
-                <Drawer.Screen name="Notifications" component={NotificationsScreen} />
                 <Drawer.Screen name="Regras" component={Regras} />
                 <Drawer.Screen name="Central de Denúncias" component={Centraldenuncias} />
-                <Drawer.Screen name="Postagens" component={Postagem} />
                 <Drawer.Screen name="Novidades" component={Novidades} />
                 <Drawer.Screen name="Suporte" component={Suporte} />
                 <Drawer.Screen name="Chat" component={Chat} />
@@ -66,8 +65,13 @@ export default function Rotas() {
                 <Drawer.Screen name="Mais Comentados" component={MaisComentados} />
                 <Drawer.Screen name="Selecionar" component={SelecionarComp} />
             </Drawer.Navigator>
-            <FabButton></FabButton>
+            <FabButonTeste />
         </NavigationContainer>
         
       );
 }
+const css = StyleSheet.create({
+    sumir:{
+        display: 'none',
+    }
+})
