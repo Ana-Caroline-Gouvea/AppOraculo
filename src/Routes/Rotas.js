@@ -12,13 +12,13 @@ import Login from '../Pages/Login';
 import Cadastro from '../Pages/Cadastro';
 import Genero from "../Pages/Genero";
 import Centraldenuncias from '../Pages/Centraldenuncias';
-import Novidades from '../Pages/Novidades'
 import Postagem from '../Pages/Postagem';
-import Eventos from '../Pages/Eventos'
+import Eventos from '../Pages/Eventos';
 import { ImportExport } from 'aws-sdk';
 import MaisComentados from '../Pages/MaisComentados';
 import FabButton from '../Components/FabButton';
 import Novidades from '../Pages/Novidades';
+import SelecionarComp from '../Components/SelecionarComp';
 
 function NotificationsScreen({ navigation }) {
     return (
@@ -64,6 +64,7 @@ export default function Rotas() {
                 <Drawer.Screen name="Chat" component={Chat} />
                 <Drawer.Screen name="Eventos" component={Eventos} />
                 <Drawer.Screen name="Mais Comentados" component={MaisComentados} />
+                <Drawer.Screen name="Selecionar" component={SelecionarComp} />
             </Drawer.Navigator>
             <FabButton></FabButton>
         </NavigationContainer>

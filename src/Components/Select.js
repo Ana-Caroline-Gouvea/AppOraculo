@@ -13,7 +13,7 @@ export default function Select({data, setComunidade}) {
                 return (
                     <View style={styles.dropdownButtonStyle}>
                         <Text style={styles.dropdownButtonTxtStyle}>
-                            {(selectedItem && selectedItem.nomeComunidade) || 'Selecione uma comunidade'}
+                            {(selectedItem && selectedItem.nomeComunidade) || 'Selecione'}
                         </Text>
                         
                     </View>
@@ -35,20 +35,23 @@ export default function Select({data, setComunidade}) {
 
 const styles = StyleSheet.create({
     dropdownButtonStyle: {
-      width: 200,
+      width: 150,
       height: 50,
-      backgroundColor: '#E9ECEF',
+      backgroundColor: "#F4F4F4",
       borderRadius: 12,
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
       paddingHorizontal: 12,
+      marginTop:10,
+      borderWidth:2,
+      borderColor:"#7C25AE"
     },
     dropdownButtonTxtStyle: {
       flex: 1,
-      fontSize: 18,
-      fontWeight: '500',
-      color: '#151E26',
+      fontSize: 16,
+      fontWeight: 'bold',
+      color: "#7C25AE",
     },
     dropdownButtonArrowStyle: {
       fontSize: 28,
@@ -68,12 +71,13 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       paddingVertical: 8,
+      
     },
     dropdownItemTxtStyle: {
       flex: 1,
       fontSize: 18,
       fontWeight: '500',
-      color: '#151E26',
+      color: "#7C25AE",
     },
     dropdownItemIconStyle: {
       fontSize: 28,
