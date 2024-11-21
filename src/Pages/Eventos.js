@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, } from 'react'
 import { View, StyleSheet, Text, Image, FlatList } from 'react-native';
 import EventoComp from '../Components/EventoComp';
 import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
