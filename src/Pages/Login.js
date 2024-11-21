@@ -2,7 +2,7 @@ import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, StyleSheet 
 import React, { useContext, useState } from 'react'
 import { AuthContext } from '../Context/AuthContext';
 
-export default function Login({ setCadastro, setLogado }) {
+export default function Login({ setCadastro }) {
 
 
     const [email, setEmail] = useState(false);
@@ -19,18 +19,16 @@ export default function Login({ setCadastro, setLogado }) {
     }
 
     return (
-        <ScrollView contentContainerStyle={css.container}>
+        <ScrollView contentContainerStyle={css.scrollViewContainer}>
             <Image source={require("../../assets/Logo-login.png")} style={css.imagemLogin} />
-            <Image source={require("../../assets/gradienteApp.jpg")} style={css.imagem} />
             <View style={css.box}>
-            <Text style={css.title} >Seja bem-vindo (a) ao Oráculo!</Text>
                 <TextInput
                     inputMode="email"
                     placeholder="Email"
                     style={css.input}
                     value={email}
                     onChangeText={(digitado) => setEmail(digitado)}
-                    placeholderTextColor="#686D76"
+                    placeholderTextColor="#000"
                     require
                 />
                 <TextInput
@@ -40,7 +38,7 @@ export default function Login({ setCadastro, setLogado }) {
                     style={css.input}
                     value={senha}
                     onChangeText={(digitado) => setSenha(digitado)}
-                    placeholderTextColor="#686D76"
+                    placeholderTextColor="#000"
                     require
                 />
                 <View style={css.esqueciSenha}>
@@ -73,9 +71,16 @@ const css = StyleSheet.create({
         alignItems: "center",
         alignContent: "center",
     },
+    scrollViewContainer: {
+        flexGrow: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        paddingBottom: 20,
+    },
     imagem: {
         width: "100%",
         height: "100%",
+        borderRadius: 12,
         position: "absolute",
         top: 0,
         left: 0,
@@ -87,7 +92,7 @@ const css = StyleSheet.create({
         padding: 10,
         borderRadius: 3,
         borderColor: '#8E44AD',
-        backgroundColor: '#ffff',
+        backgroundColor: 'rgba(219, 219, 219, 0.37)',
         opacity: 0.5,
         borderWidth: 0,
         borderBottomWidth: 1,
@@ -101,7 +106,7 @@ const css = StyleSheet.create({
 
     },
     semCadastroText: {
-        color: "white",
+        color: "black",
         display: "flex",
         flexDirection: "row",
     },
@@ -120,7 +125,6 @@ const css = StyleSheet.create({
     },
     btnLoginText: {
         color: "white",
-        lineHeight: 45,
         textAlign: "center",
         fontSize: 15,
         fontWeight: "bold"
@@ -131,7 +135,7 @@ const css = StyleSheet.create({
         marginTop: 30
     },
     errorText: {
-        color: "white",
+        color: "black",
         textAlign: "center"
     },
     esqueciSenha: {
@@ -145,11 +149,13 @@ const css = StyleSheet.create({
     },
     box: {
         width: "80%",
-        backgroundColor: 'rgba(255, 255, 255, 0.19)',
+        backgroundColor: 'rgba(255, 255, 255, 0.2)',
         justifyContent: "center",
         alignItems: "center",
-        height: 460,
+        height: 395,
         borderRadius: 10,
+        borderColor: "#8E44AD",
+        borderWidth: 1.5
     },
     esqueciSenha: {
         width: "90%",
@@ -164,11 +170,5 @@ const css = StyleSheet.create({
         width: '45%',
         height: '25%',
         zIndex: 2,
-    },
-    title: {
-        fontSize: 17,
-        color: '#9347B7',
-        fontWeight: 'bold',
-        marginBottom: 30
     }
 });

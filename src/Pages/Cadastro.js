@@ -1,81 +1,132 @@
 import React, { useState } from 'react';
-import { Text, TextInput, StyleSheet, TouchableOpacity, View, Image, Alert } from 'react-native';
-import { launchImageLibrary } from 'react-native-image-picker';
+import { Text, TextInput, StyleSheet, TouchableOpacity, View, Alert, Image, Platform, ScrollView } from 'react-native';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import dayjs from 'dayjs';
 
-export default function Cadastro({ setLogado, setCadastro }) {
 
-    const [senha, setSenha] = useState("");
+export default function Cadastro({ setCadastro }) {
     const [confirmarSenha, setConfirmarSenha] = useState("");
-    const [cadastroConcluido, setCadastroConcluido] = useState(true);
+    const [nome, setNome] = useState("");
+    const [email, setEmail] = useState("");
+    const [apelido, setApelido] = useState("");
+    const [data, setData] = useState(null);
+    const [senha, setSenha] = useState("");
+    const [showDatePicker, setShowDatePicker] = useState(false);
 
-    function Cadastrar() {
-        if (senha == confirmarSenha) {
-            setCadastro(false);
-            setLogado(true);
-            alert('Cadastro concluído com sucesso!');
-        } else {
-            alert('As senhas não coincidem!');
+
+    const formatDate = (date) => dayjs(date).format("DD/MM/YYYY");
+
+    const onDateChange = (event, selectedDate) => {
+        setShowDatePicker(false); 
+        if (selectedDate) {
+            setData(selectedDate); 
         }
-        setCadastro(true);
+    };
+
+    async function Cadastrar() {
+        if (senha === confirmarSenha) {
+            console.log("Dados de cadastro:", { nome, email, apelido, data, senha });
+            await fetch('http://10.133.22.18:5251/api/Usuario/CreateUsuario', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                },
+                body: JSON.stringify({
+                    UsuarioNome: nome,
+                    UsuarioEmail: email,
+                    UsuarioFoto: "asd",
+                    UsuarioApelido: apelido,
+                    UsuarioDataNascimento: data,
+                    UsuarioSenha: senha,
+                    usuarioConfirmarSenha: senha
+                }),
+            })
+                .then((res) => res.json())
+                .then((json) => {
+                    if(json.usuarioId) {
+                        setCadastro(true)
+                        Alert.alert("Sucesso", "Cadastro concluido com sucesso!");
+                    }
+                })
+                .catch((err) => console.log(err));
+        } else {
+            Alert.alert("Erro", "As senhas não coincidem.");
+        }
     }
 
     function Voltar() {
         setCadastro(false);
-        setLogado(false);
-
     }
+
     return (
+        <ScrollView contentContainerStyle={css.scrollViewContainer}>
         <View style={css.View}>
-            <Image source={require("../../assets/gradienteApp.jpg")} style={css.imagem} />
             <Image source={require("../../assets/Logo-login.png")} style={css.imagemLogin} />
             <View style={css.boxCadastro}>
-            <Text style={css.title} >Junte-se ao Oráculo!</Text>
+                <Text style={css.title}>Junte-se ao Oráculo!</Text>
                 <TextInput
                     style={css.input}
                     placeholder="Nome"
-                    require
+                    placeholderTextColor="#000"
+                    onChangeText={setNome}
+                    value={nome}
                 />
                 <TextInput
                     style={css.input}
                     placeholder="Apelido (opcional)"
+                    placeholderTextColor="#000"
+                    onChangeText={setApelido}
+                    value={apelido}
                 />
                 <TextInput
                     style={css.input}
                     placeholder="Email"
-                    require
+                    placeholderTextColor="#000"
+                    onChangeText={setEmail}
+                    value={email}
                 />
-                <TextInput
-                    style={css.input}
-                    placeholder="Data de Nascimento"
-                    require
-                />
+                <TouchableOpacity style={css.input} onPress={() => setShowDatePicker(true)}>
+                    <Text style={{ color: data ? "#000" : "#aaa" }}>
+                        {data ? formatDate(data) : "Data de Nascimento"}
+                    </Text>
+                </TouchableOpacity>
+                {showDatePicker && (
+                    <DateTimePicker
+                        value={data || new Date()} // Usa a data atual como fallback
+                        mode="date"
+                        display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+                        onChange={onDateChange}
+                    />
+                )}
                 <TextInput
                     style={css.input}
                     placeholder="Senha"
-                    onChangeText={(digitado) => setSenha(digitado)}
-                    require
+                    placeholderTextColor="#000"
+                    secureTextEntry
+                    onChangeText={setSenha}
+                    value={senha}
                 />
                 <TextInput
                     style={css.input}
                     placeholder="Confirmar Senha"
-                    onChangeText={(digitado) => setConfirmarSenha(digitado)}
-                    require
+                    placeholderTextColor="#000"
+                    secureTextEntry
+                    onChangeText={setConfirmarSenha}
+                    value={confirmarSenha}
                 />
                 <TouchableOpacity style={css.buttonCadastro} onPress={Cadastrar}>
-                    <Text style={css.textCadastro} >Cadastrar-se</Text>
+                    <Text style={css.textCadastro}>Cadastrar-se</Text>
                 </TouchableOpacity>
                 <View style={css.boxLogin}>
-                    <Text style={css.LoginTrueText}>Já tem uma conta?</Text>
+                    <Text style={css.LoginTrueText}>Já possui uma conta?</Text>
                     <TouchableOpacity style={css.buttonLogin} onPress={Voltar}>
                         <Text style={css.textLogar}>Logar</Text>
                     </TouchableOpacity>
                 </View>
             </View>
-
-
-
         </View>
-    )
+        </ScrollView>
+    );
 }
 
 const css = StyleSheet.create({
@@ -86,6 +137,10 @@ const css = StyleSheet.create({
         alignItems: "center",
         alignContent: "center",
     },
+    scrollViewContainer: {
+        flexGrow: 1,
+        paddingBottom: 20,
+    },
     title: {
         fontSize: 17,
         color: '#9347B7',
@@ -95,24 +150,25 @@ const css = StyleSheet.create({
     input: {
         width: '90%',
         height: 45,
-        borderWidth: 1,
         marginTop: 25,
         padding: 10,
         borderRadius: 3,
+        backgroundColor: 'rgba(219, 219, 219, 0.37)',
         borderColor: '#8E44AD',
-        backgroundColor: '#ffff',
         opacity: 0.5,
         borderWidth: 0,
         borderBottomWidth: 1,
     },
     boxCadastro: {
         width: '87%',
-        height: 570,
+        height: 580,
         borderRadius: 15,
         backgroundColor: 'rgba(255, 255, 255, 0.19)',
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 160
+        marginTop: 160,
+        borderColor: "#8E44AD",
+        borderWidth: 1.5,
     },
     imgLogo: {
         resizeMode: 'contain',
@@ -125,7 +181,7 @@ const css = StyleSheet.create({
         backgroundColor: "#bb1cff",
         alignItems: 'center',
         justifyContent: 'center',
-        margin: 20,
+        margin: 18,
         borderRadius: 3,
     },
     textCadastro: {
@@ -140,7 +196,7 @@ const css = StyleSheet.create({
     buttonLogin: {
         height: 21,
         borderBottomWidth: 0.5,
-        borderColor: '#CC02DE'
+        borderColor: '#CC02DE',
     },
     textLogar: {
         color: '#B221BE',
@@ -154,14 +210,11 @@ const css = StyleSheet.create({
         top: 0,
         left: 0,
     },
-    LoginTrueText: {
-        color: "white"
-    },
     imagemLogin: {
         width: '45%',
         height: '25%',
         position: 'absolute',
-        top: '2%',
+        top: '1%',
         zIndex: 2,
     }
 });
