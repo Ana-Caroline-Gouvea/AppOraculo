@@ -1,5 +1,5 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { Button, View, Text,  } from 'react-native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { Button, View, Text, StyleSheet,  } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../Context/AuthContext';
@@ -41,7 +41,7 @@ export default function Rotas() {
     if (cadastro && !logado ) {
         return (<Cadastro setCadastro={setCadastro} />)
     }
-
+    
     return (
     
         <NavigationContainer> 
@@ -50,8 +50,7 @@ export default function Rotas() {
                 screenOptions={{
                     headerTitle: (props) => <HeaderBusca {...props} />,
                     headerStyle: { backgroundColor: 'white', height: 100 }
-                }}               
-            >
+                }}>
                 <Drawer.Screen name="Home" component={Home} />
                 <Drawer.Screen name="Notifications" component={NotificationsScreen} />
                 <Drawer.Screen name="Regras" component={Regras} />
@@ -64,8 +63,13 @@ export default function Rotas() {
                 <Drawer.Screen name="Mais Comentados" component={MaisComentados} />
                 <Drawer.Screen name="Perfil" component={Perfil} />
             </Drawer.Navigator>
-            <FabButton></FabButton>
+            <FabButonTeste />
         </NavigationContainer>
         
       );
 }
+const css = StyleSheet.create({
+    sumir:{
+        display: 'none',
+    }
+})

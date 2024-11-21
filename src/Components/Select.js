@@ -13,7 +13,7 @@ export default function Select({data, setComunidade}) {
                 return (
                     <View style={styles.dropdownButtonStyle}>
                         <Text style={styles.dropdownButtonTxtStyle}>
-                            {(selectedItem && selectedItem.nomeComunidade) || 'Selecione uma comunidade'}
+                            {(selectedItem && selectedItem.nomeComunidade) || 'Selecione'}
                         </Text>
                         
                     </View>
@@ -35,7 +35,7 @@ export default function Select({data, setComunidade}) {
 
 const styles = StyleSheet.create({
     dropdownButtonStyle: {
-      width: 200,
+      width: 150,
       height: 50,
       backgroundColor: '#f4f4f4',
       borderRadius: 12,
@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       paddingVertical: 8,
+      
     },
     dropdownItemTxtStyle: {
       flex: 1,
