@@ -37,21 +37,20 @@ const styles = StyleSheet.create({
     dropdownButtonStyle: {
       width: 150,
       height: 50,
-      backgroundColor: "#F4F4F4",
+      backgroundColor: '#f4f4f4',
       borderRadius: 12,
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
       paddingHorizontal: 12,
-      marginTop:10,
-      borderWidth:2,
-      borderColor:"#7C25AE"
+      borderWidth: 2,
+      borderColor: '#7c25ae'
     },
     dropdownButtonTxtStyle: {
       flex: 1,
-      fontSize: 16,
-      fontWeight: 'bold',
-      color: "#7C25AE",
+      fontSize: 18,
+      fontWeight: '500',
+      color: '#7c25ae',
     },
     dropdownButtonArrowStyle: {
       fontSize: 28,
@@ -77,7 +76,7 @@ const styles = StyleSheet.create({
       flex: 1,
       fontSize: 18,
       fontWeight: '500',
-      color: "#7C25AE",
+      color: '#7c25ae',
     },
     dropdownItemIconStyle: {
       fontSize: 28,
