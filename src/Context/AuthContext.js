@@ -8,6 +8,7 @@ function AuthProvider({ children }) {
     const [logado, setLogado] = useState(false); 
     const [error, setError] = useState(false); 
 
+
     // Função de Login
     async function Login(email, senha) {
         if (email !== "" && senha !== "") {

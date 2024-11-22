@@ -18,6 +18,7 @@ import Novidades from '../Pages/Novidades';
 import SelecionarComp from '../Components/SelecionarComp';
 import FabButonTeste from '../Components/FabButton';
 import Selecionar from '../Pages/Selecionar';
+import Perfil from '../Pages/Perfil';
 
 function NotificationsScreen({ navigation }) {
     return (
