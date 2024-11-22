@@ -12,7 +12,7 @@ export default function Chat() {
     // Função para buscar os dados do usuário
     async function getUsuario() {
         try {
-            const response = await fetch("http://10.133.22.12:5251/api/Usuario/GetUsuarioId/4");
+            const response = await fetch("http://10.133.22.18:5251/api/Usuario/GetUsuarioId/9");
             const data = await response.json();
 
             // Exibindo os dados da API no console para verificar o conteúdo
@@ -32,7 +32,7 @@ export default function Chat() {
 
     useEffect(() => {
         // Criação da instância do socket
-        socket.current = io('http://10.133.22.12:3000');
+        socket.current = io('http://10.133.22.16:3000');
 
         socket.current.on('connect', () => {
             console.log('Conectado ao servidor');

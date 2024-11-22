@@ -11,21 +11,25 @@ export default function Cadastro({ setCadastro }) {
     const [apelido, setApelido] = useState("");
     const [data, setData] = useState(null);
     const [senha, setSenha] = useState("");
+    const [fotoPerfil, setFotoPerfil] = useState("");
     const [showDatePicker, setShowDatePicker] = useState(false);
 
 
     const formatDate = (date) => dayjs(date).format("DD/MM/YYYY");
 
     const onDateChange = (event, selectedDate) => {
-        setShowDatePicker(false); 
+        setShowDatePicker(false);
         if (selectedDate) {
-            setData(selectedDate); 
+            setData(selectedDate);
         }
     };
 
     async function Cadastrar() {
+        const fotoPerfilPadrao = "https://static.vecteezy.com/ti/vetor-gratis/p1/20765399-padrao-perfil-conta-desconhecido-icone-preto-silhueta-gratis-vetor.jpg";
         if (senha === confirmarSenha) {
-            console.log("Dados de cadastro:", { nome, email, apelido, data, senha });
+            const fotoParaSalvar = fotoPerfil.trim() !== "" ? fotoPerfil : fotoPerfilPadrao;
+
+            console.log("Dados de cadastro:", { nome, email, apelido, data, senha, fotoPerfil: fotoParaSalvar });
             await fetch('http://10.133.22.18:5251/api/Usuario/CreateUsuario', {
                 method: 'POST',
                 headers: {
@@ -34,7 +38,7 @@ export default function Cadastro({ setCadastro }) {
                 body: JSON.stringify({
                     UsuarioNome: nome,
                     UsuarioEmail: email,
-                    UsuarioFoto: "asd",
+                    UsuarioFoto: fotoParaSalvar,
                     UsuarioApelido: apelido,
                     UsuarioDataNascimento: data,
                     UsuarioSenha: senha,
@@ -43,7 +47,7 @@ export default function Cadastro({ setCadastro }) {
             })
                 .then((res) => res.json())
                 .then((json) => {
-                    if(json.usuarioId) {
+                    if (json.usuarioId) {
                         setCadastro(true)
                         Alert.alert("Sucesso", "Cadastro concluido com sucesso!");
                     }
@@ -60,71 +64,78 @@ export default function Cadastro({ setCadastro }) {
 
     return (
         <ScrollView contentContainerStyle={css.scrollViewContainer}>
-        <View style={css.View}>
-            <Image source={require("../../assets/Logo-login.png")} style={css.imagemLogin} />
-            <View style={css.boxCadastro}>
-                <Text style={css.title}>Junte-se ao Oráculo!</Text>
-                <TextInput
-                    style={css.input}
-                    placeholder="Nome"
-                    placeholderTextColor="#000"
-                    onChangeText={setNome}
-                    value={nome}
-                />
-                <TextInput
-                    style={css.input}
-                    placeholder="Apelido (opcional)"
-                    placeholderTextColor="#000"
-                    onChangeText={setApelido}
-                    value={apelido}
-                />
-                <TextInput
-                    style={css.input}
-                    placeholder="Email"
-                    placeholderTextColor="#000"
-                    onChangeText={setEmail}
-                    value={email}
-                />
-                <TouchableOpacity style={css.input} onPress={() => setShowDatePicker(true)}>
-                    <Text style={{ color: data ? "#000" : "#aaa" }}>
-                        {data ? formatDate(data) : "Data de Nascimento"}
-                    </Text>
-                </TouchableOpacity>
-                {showDatePicker && (
-                    <DateTimePicker
-                        value={data || new Date()} // Usa a data atual como fallback
-                        mode="date"
-                        display={Platform.OS === 'ios' ? 'spinner' : 'default'}
-                        onChange={onDateChange}
+            <View style={css.View}>
+                <Image source={require("../../assets/Logo-login.png")} style={css.imagemLogin} />
+                <View style={css.boxCadastro}>
+                    <Text style={css.title}>Junte-se ao Oráculo!</Text>
+                    <TextInput
+                        style={css.input}
+                        placeholder="Nome"
+                        placeholderTextColor="#000"
+                        onChangeText={setNome}
+                        value={nome}
                     />
-                )}
-                <TextInput
-                    style={css.input}
-                    placeholder="Senha"
-                    placeholderTextColor="#000"
-                    secureTextEntry
-                    onChangeText={setSenha}
-                    value={senha}
-                />
-                <TextInput
-                    style={css.input}
-                    placeholder="Confirmar Senha"
-                    placeholderTextColor="#000"
-                    secureTextEntry
-                    onChangeText={setConfirmarSenha}
-                    value={confirmarSenha}
-                />
-                <TouchableOpacity style={css.buttonCadastro} onPress={Cadastrar}>
-                    <Text style={css.textCadastro}>Cadastrar-se</Text>
-                </TouchableOpacity>
-                <View style={css.boxLogin}>
-                    <Text style={css.LoginTrueText}>Já possui uma conta?</Text>
-                    <TouchableOpacity style={css.buttonLogin} onPress={Voltar}>
-                        <Text style={css.textLogar}>Logar</Text>
+                    <TextInput
+                        style={css.input}
+                        placeholder="Apelido (opcional)"
+                        placeholderTextColor="#000"
+                        onChangeText={setApelido}
+                        value={apelido}
+                    />
+                    <TextInput
+                        style={css.input}
+                        placeholder="URL da Foto de Perfil (opcional)"
+                        placeholderTextColor="#000"
+                        onChangeText={setFotoPerfil}
+                        value={fotoPerfil}
+                    />
+                    <TextInput
+                        style={css.input}
+                        placeholder="Email"
+                        placeholderTextColor="#000"
+                        onChangeText={setEmail}
+                        value={email}
+                    />
+                    <TouchableOpacity style={css.input} onPress={() => setShowDatePicker(true)}>
+                        <Text style={{ color: data ? "#000" : "#aaa" }}>
+                            {data ? formatDate(data) : "Data de Nascimento"}
+                        </Text>
                     </TouchableOpacity>
+                    {showDatePicker && (
+                        <DateTimePicker
+                            value={data || new Date()} // Usa a data atual como fallback
+                            mode="date"
+                            display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+                            onChange={onDateChange}
+                        />
+                    )}
+                    <TextInput
+                        style={css.input}
+                        placeholder="Senha"
+                        placeholderTextColor="#000"
+                        secureTextEntry
+                        onChangeText={setSenha}
+                        value={senha}
+                    />
+                    <TextInput
+                        style={css.input}
+                        placeholder="Confirmar Senha"
+                        placeholderTextColor="#000"
+                        secureTextEntry
+                        onChangeText={setConfirmarSenha}
+                        value={confirmarSenha}
+                    />
+                    <TouchableOpacity style={css.buttonCadastro} onPress={Cadastrar}>
+                        <Text style={css.textCadastro}>Cadastrar-se</Text>
+                    </TouchableOpacity>
+                    <View style={css.boxLogin}>
+                        <Text style={css.LoginTrueText}>Já possui uma conta?</Text>
+                        <TouchableOpacity style={css.buttonLogin} onPress={Voltar}>
+                            <Text style={css.textLogar}>Logar</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
-        </View>
         </ScrollView>
     );
 }
@@ -161,7 +172,7 @@ const css = StyleSheet.create({
     },
     boxCadastro: {
         width: '87%',
-        height: 580,
+        height: 630,
         borderRadius: 15,
         backgroundColor: 'rgba(255, 255, 255, 0.19)',
         alignItems: 'center',
@@ -211,10 +222,9 @@ const css = StyleSheet.create({
         left: 0,
     },
     imagemLogin: {
-        width: '45%',
-        height: '25%',
+        width: '43%',
+        height: '23%',
         position: 'absolute',
-        top: '1%',
-        zIndex: 2,
+        top: '0%',
     }
 });

@@ -8,7 +8,7 @@ export default function Novidades({navigation}) {
   const [novidade, setNovidade] = useState([]);
 
   async function getNovidades() {
-    await fetch("http://10.133.22.26:5251/api/Novidade/GetAllNovidade",
+    await fetch("http://10.133.22.18:5251/api/Novidade/GetAllNovidade",
       {
         method: "GET"
       }

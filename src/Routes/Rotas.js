@@ -18,6 +18,7 @@ import Novidades from '../Pages/Novidades';
 import SelecionarComp from '../Components/SelecionarComp';
 import FabButonTeste from '../Components/FabButton';
 import Selecionar from '../Pages/Selecionar';
+import Perfil from '../Pages/Perfil';
 
 function NotificationsScreen({ navigation }) {
     return (
@@ -63,7 +64,7 @@ export default function Rotas() {
                 <Drawer.Screen name="Eventos" component={Eventos} />
                 <Drawer.Screen name="Mais Comentados" component={MaisComentados} />
                 <Drawer.Screen name="Selecionar" component={Selecionar} />
-                <Drawer.Screen name="Postagens" component={Postagem} />
+                <Drawer.Screen name='Perfil' component={Perfil} />
             </Drawer.Navigator>
             <FabButonTeste />
         </NavigationContainer>
