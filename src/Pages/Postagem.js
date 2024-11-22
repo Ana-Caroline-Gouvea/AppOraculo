@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,  } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
 import PostComponente from '../Components/PostComponente'
@@ -9,7 +9,7 @@ export default function Postagem() {
     const [postagens, setPostagens] = useState([]);
 
     async function getPosts() {
-        await fetch("http://10.133.22.37:5251/api/Postagem/GetAllPostagem",
+        await fetch("http://10.133.22.16:5251/api/Postagem/GetAllPostagem",
             {
                 method: "GET"
             }

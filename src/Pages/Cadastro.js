@@ -26,7 +26,7 @@ export default function Cadastro({ setCadastro }) {
     async function Cadastrar() {
         if (senha === confirmarSenha) {
             console.log("Dados de cadastro:", { nome, email, apelido, data, senha });
-            await fetch('http://10.133.22.18:5251/api/Usuario/CreateUsuario', {
+            await fetch('http://10.133.22.16:5251/api/Usuario/CreateUsuario', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
