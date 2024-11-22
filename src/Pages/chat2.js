@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { View, Text, TextInput, FlatList, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage'; // Importar o AsyncStorage
 import io from 'socket.io-client';
 
 export default function Chat() {
@@ -9,16 +10,22 @@ export default function Chat() {
     const [profilePic, setProfilePic] = useState('');
     const socket = useRef(null); // Usando `useRef` para manter a mesma instância de socket
 
-    // Função para buscar os dados do usuário
+    // Função para buscar os dados do usuário logado
     async function getUsuario() {
         try {
-            const response = await fetch("http://10.133.22.12:5251/api/Usuario/GetUsuarioId/5");
+            // Recuperar o ID do usuário do AsyncStorage
+            const userId = await AsyncStorage.getItem('userId');
+            if (!userId) {
+                console.error("Usuário não encontrado no armazenamento local");
+                return;
+            }
+
+            // Requisição para buscar os dados do usuário
+            const response = await fetch(`http://10.133.22.16:5251/api/Usuario/GetUsuarioId/${userId}`);
             const data = await response.json();
 
-            // Exibindo os dados da API no console para verificar o conteúdo
+            // Verificar e atualizar os estados com os dados do usuário
             console.log("Dados do usuário carregados:", data);
-
-            // Verificando se os campos realmente possuem valores válidos
             setUsername(data.usuarioNome && data.usuarioNome.trim() ? data.usuarioNome : 'Usuário');
             setProfilePic(data.usuarioFoto && data.usuarioFoto.trim() ? data.usuarioFoto : '');
         } catch (error) {
@@ -27,12 +34,12 @@ export default function Chat() {
     }
 
     useEffect(() => {
-        getUsuario(); // Carrega o usuário ao abrir o chat
+        getUsuario(); // Carrega os dados do usuário ao abrir o chat
     }, []);
 
     useEffect(() => {
         // Criação da instância do socket
-        socket.current = io('http://10.133.22.16:3000');
+
         socket.current = io('http://10.133.22.16:3000');
 
         socket.current.on('connect', () => {
@@ -135,8 +142,8 @@ const styles = StyleSheet.create({
         paddingBottom: 16,
     },
     messageContainer: {
-        flexDirection: 'row', // Alinha a imagem e o conteúdo horizontalmente
-        alignItems: 'flex-start', // Mantém a imagem alinhada ao topo do conteúdo
+        flexDirection: 'row',
+        alignItems: 'flex-start',
         marginVertical: 8,
         padding: 12,
         borderRadius: 12,
@@ -149,28 +156,28 @@ const styles = StyleSheet.create({
         borderLeftColor: '#8E44AD',
     },
     userImage: {
-        width: 50, // Aumentando o tamanho da imagem
+        width: 50,
         height: 50,
         borderRadius: 30,
-        marginRight: 8, // Reduzindo o espaçamento entre a imagem e o texto
-        marginLeft: -8, // Movendo a imagem para a esquerda
+        marginRight: 8,
+        marginLeft: -8,
         borderWidth: 2,
         borderColor: '#8E44AD',
     },
     messageContent: {
-        flex: 1, // O texto ocupa o restante do espaço
+        flex: 1,
     },
     userName: {
         fontWeight: 'bold',
-        fontSize: 18, // Aumentando o tamanho do nome
+        fontSize: 18,
         color: '#4A148C',
-        marginBottom: 4, // Espaçamento entre o nome e a mensagem
-        marginTop: -4, // Movendo o nome para cima
+        marginBottom: 4,
+        marginTop: -4,
     },
     messageText: {
-        fontSize: 16, // Fonte maior para facilitar a leitura
+        fontSize: 16,
         color: '#333',
-        lineHeight: 20, // Linha mais espaçada para clareza
+        lineHeight: 20,
     },
     inputContainer: {
         flexDirection: 'row',

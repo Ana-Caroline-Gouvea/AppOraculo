@@ -1,17 +1,26 @@
-import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, StyleSheet } from 'react-native'
-import React, { useContext, useState } from 'react'
+import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, StyleSheet } from 'react-native';
+import React, { useContext, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage'; // Importar o AsyncStorage
 import { AuthContext } from '../Context/AuthContext';
 
 export default function Login({ setCadastro }) {
-
-
-    const [email, setEmail] = useState(false);
-    const [senha, setSenha] = useState(false);
-
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
     const { Login, error } = useContext(AuthContext);
 
-    function RealizaLogin() {
-        Login(email, senha);
+    async function RealizaLogin() {
+        try {
+            const userData = await Login(email, senha); // Chama a função de login do contexto
+            if (userData && userData.usuarioId) {
+                // Salva o ID do usuário no AsyncStorage
+                await AsyncStorage.setItem('userId', userData.usuarioId.toString());
+                console.log('Login realizado com sucesso. ID salvo:', userData.usuarioId);
+            } else {
+                console.error('Erro: Usuário não retornou com um ID válido.');
+            }
+        } catch (error) {
+            console.error('Erro ao realizar login:', error);
+        }
     }
 
     function Cadastrar() {
@@ -20,7 +29,7 @@ export default function Login({ setCadastro }) {
 
     return (
         <ScrollView contentContainerStyle={css.scrollViewContainer}>
-            <Image source={require("../../assets/Logo-login.png")} style={css.imagemLogin} />
+            <Image source={require('../../assets/Logo-login.png')} style={css.imagemLogin} />
             <View style={css.box}>
                 <TextInput
                     inputMode="email"
@@ -29,7 +38,6 @@ export default function Login({ setCadastro }) {
                     value={email}
                     onChangeText={(digitado) => setEmail(digitado)}
                     placeholderTextColor="#000"
-                    require
                 />
                 <TextInput
                     inputMode="text"
@@ -39,7 +47,6 @@ export default function Login({ setCadastro }) {
                     value={senha}
                     onChangeText={(digitado) => setSenha(digitado)}
                     placeholderTextColor="#000"
-                    require
                 />
                 <View style={css.esqueciSenha}>
                     <Text style={css.esqueciSenhaText}>Esqueci minha senha!</Text>
@@ -53,37 +60,37 @@ export default function Login({ setCadastro }) {
                         <Text style={css.cadastroText}>Cadastre-se</Text>
                     </TouchableOpacity>
                 </View>
-                {error &&
+                {error && (
                     <View style={css.error}>
                         <Text style={css.errorText}>Revise os campos. Tente novamente!</Text>
                     </View>
-                }
-
+                )}
             </View>
         </ScrollView>
-    )
+    );
 }
+
 const css = StyleSheet.create({
-    container: {
-        flexGrow: 1,
-        width: "100%",
-        justifyContent: "center",
-        alignItems: "center",
-        alignContent: "center",
-    },
     scrollViewContainer: {
         flexGrow: 1,
-        justifyContent: "center",
-        alignItems: "center",
+        justifyContent: 'center',
+        alignItems: 'center',
         paddingBottom: 20,
     },
-    imagem: {
-        width: "100%",
-        height: "100%",
-        borderRadius: 12,
-        position: "absolute",
-        top: 0,
-        left: 0,
+    imagemLogin: {
+        width: '45%',
+        height: '25%',
+        zIndex: 2,
+    },
+    box: {
+        width: '80%',
+        backgroundColor: 'rgba(255, 255, 255, 0.2)',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 395,
+        borderRadius: 10,
+        borderColor: '#8E44AD',
+        borderWidth: 1.5,
     },
     input: {
         width: '90%',
@@ -97,78 +104,49 @@ const css = StyleSheet.create({
         borderWidth: 0,
         borderBottomWidth: 1,
     },
-    semCadastro: {
-        width: "90%",
-        marginTop: 10,
-        display: "flex",
-        flexDirection: "row",
-        gap: 8
-
+    esqueciSenha: {
+        width: '90%',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
     },
-    semCadastroText: {
-        color: "black",
-        display: "flex",
-        flexDirection: "row",
-    },
-    cadastroText: {
-        color: "#9f00b4",
-        fontWeight: "bold",
+    esqueciSenhaText: {
+        color: '#9900ad',
+        fontWeight: 'bold',
     },
     btnLogin: {
-        width: "90%",
+        width: '90%',
         height: 40,
-        backgroundColor: "#bb1cff",
+        backgroundColor: '#bb1cff',
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 40,
         borderRadius: 3,
     },
     btnLoginText: {
-        color: "white",
-        textAlign: "center",
+        color: 'white',
+        textAlign: 'center',
         fontSize: 15,
-        fontWeight: "bold"
+        fontWeight: 'bold',
+    },
+    semCadastro: {
+        width: '90%',
+        marginTop: 10,
+        flexDirection: 'row',
+    },
+    semCadastroText: {
+        color: 'black',
+    },
+    cadastroText: {
+        color: '#9f00b4',
+        fontWeight: 'bold',
     },
     error: {
-        width: "100%",
+        width: '100%',
         height: 50,
-        marginTop: 30
+        marginTop: 30,
     },
     errorText: {
-        color: "black",
-        textAlign: "center"
+        color: 'black',
+        textAlign: 'center',
     },
-    esqueciSenha: {
-        width: "90%",
-        justifyContent: "flex-start",
-        alignItems: "flex-start",
-    },
-    esqueciSenhaText: {
-        color: "#FFD124",
-        fontWeight: "bold",
-    },
-    box: {
-        width: "80%",
-        backgroundColor: 'rgba(255, 255, 255, 0.2)',
-        justifyContent: "center",
-        alignItems: "center",
-        height: 395,
-        borderRadius: 10,
-        borderColor: "#8E44AD",
-        borderWidth: 1.5
-    },
-    esqueciSenha: {
-        width: "90%",
-        justifyContent: "flex-start",
-        alignItems: "flex-start",
-    },
-    esqueciSenhaText: {
-        color: "#9900ad",
-        fontWeight: "bold",
-    },
-    imagemLogin: {
-        width: '45%',
-        height: '25%',
-        zIndex: 2,
-    }
 });

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,  } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
 import PostComponente from '../Components/PostComponente'
