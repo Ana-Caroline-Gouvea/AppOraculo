@@ -6,7 +6,6 @@ import { AuthContext } from '../Context/AuthContext';
 import Chat from '../Pages/chat2';
 import Regras from '../Pages/Regras';
 import Suporte from '../Pages/Suporte';
-import HeaderBusca from "../Components/HeaderBusca";
 import Home from '../Pages/Home';
 import Login from '../Pages/Login';
 import Cadastro from '../Pages/Cadastro';
@@ -18,7 +17,8 @@ import Novidades from '../Pages/Novidades';
 import SelecionarComp from '../Components/SelecionarComp';
 import FabButonTeste from '../Components/FabButton';
 import Selecionar from '../Pages/Selecionar';
-import Perfil from '../Pages/Perfil';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
 
 function NotificationsScreen({ navigation }) {
     return (
@@ -50,7 +50,7 @@ export default function Rotas() {
             <Drawer.Navigator 
                 initialRouteName="Home"
                 screenOptions={{
-                    headerTitle: (props) => <HeaderBusca {...props} />,
+                    headerTitle: (props) => <MaterialCommunityIcons name="magnify" style={css.lupa} />,
                     headerStyle: { backgroundColor: 'white', height: 100 }
                 }}>
                 <Drawer.Screen name="Home" component={Home} />
@@ -75,5 +75,10 @@ export default function Rotas() {
 const css = StyleSheet.create({
     sumir:{
         display: 'none',
+    },
+    lupa:{
+       fontSize: 33,
+       display: "flex",
+       marginLeft: "88%"
     }
 })
