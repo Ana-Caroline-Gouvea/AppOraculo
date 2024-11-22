@@ -21,7 +21,7 @@ export default function Chat() {
             }
 
             // Requisição para buscar os dados do usuário
-            const response = await fetch(`http://10.133.22.16:5251/api/Usuario/GetUsuarioId/${userId}`);
+            const response = await fetch(`http://10.133.22.26:5251/api/Usuario/GetUsuarioId/${userId}`);
             const data = await response.json();
 
             // Verificar e atualizar os estados com os dados do usuário

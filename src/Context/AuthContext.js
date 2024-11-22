@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export const AuthContext = createContext(0);
 
 function AuthProvider({ children }) {
-    const [logado, setLogado] = useState(false); 
+    const [logado, setLogado] = useState(true); 
     const [error, setError] = useState(false); 
 
 
@@ -13,7 +13,7 @@ function AuthProvider({ children }) {
     async function Login(email, senha) {
         if (email !== "" && senha !== "") {
             try {
-                const response = await fetch('http://10.133.22.16:5251/api/Usuario/LoginUsuario', {
+                const response = await fetch('http://10.133.22.26:5251/api/Usuario/LoginUsuario', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

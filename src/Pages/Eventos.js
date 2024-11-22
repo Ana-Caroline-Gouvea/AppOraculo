@@ -7,7 +7,7 @@ export default function Eventos() {
     const [evento, setEvento] = useState ([]);
 
     async function getEventos() {
-        await fetch ("http://10.133.22.16:5251/api/Evento/GetAllEvento",
+        await fetch ("http://10.133.22.26:5251/api/Evento/GetAllEvento",
             {
                 method: "GET"
             }
