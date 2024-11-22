@@ -64,6 +64,7 @@ export default function Rotas() {
                 <Drawer.Screen name="Eventos" component={Eventos} />
                 <Drawer.Screen name="Mais Comentados" component={MaisComentados} />
                 <Drawer.Screen name="Selecionar" component={Selecionar} />
+                <Drawer.Screen name='Perfil' component={Perfil} />
             </Drawer.Navigator>
             <FabButonTeste />
         </NavigationContainer>
