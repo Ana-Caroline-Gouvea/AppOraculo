@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, StyleSheet, ScrollView, Text, FlatList } from 'react-native'
+import { View, StyleSheet, ScrollView, Text, FlatList, TouchableOpacity } from 'react-native'
 import SelecionarComp from '../Components/SelecionarComp'
 
 export default function Selecionar() {
@@ -22,21 +22,28 @@ export default function Selecionar() {
 
 
   return (
-    <View>
+    <View >
+
       <View style={css.boxtitle}>
         <Text style={css.title}>Você pode gostar de... </Text>
       </View>
 
-      {selecionado && 
-                <FlatList
-                data={selecionado}
-                renderItem={({item}) =><SelecionarComp item={item}/>}
-                keyExtractor={(item) => item.nomeComunidade}
-                style={css.flatList}
-                />
-            }
+      {selecionado &&
+        <FlatList
+          data={selecionado}
+          renderItem={({ item }) => <SelecionarComp item={item} />}
+          keyExtractor={(item) => item.nomeComunidade}
+          style={css.flatList}
+        />
+      }
+      <View style={css.boxbtn}>
+        <TouchableOpacity style={css.btn}>
+          <Text style={css.btntext}>Concluído</Text>
+        </TouchableOpacity>
+      </View>
 
     </View>
+
   )
 }
 
@@ -52,4 +59,27 @@ const css = StyleSheet.create({
     height: 120,
     alignItems: "center"
   },
+  btn: {
+    width: "90%",
+    height: 60,
+    backgroundColor: "#7C25AE",
+    marginTop: 20,
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "center",
+    display:"flex"
+
+  },
+  btntext: {
+    color: "white",
+    fontSize: 22
+  },
+  boxbtn: {
+    width:"100%",
+    alignItems: "center",
+    justifyContent: "center",
+    display:"flex"
+
+
+  }
 })
