@@ -33,6 +33,7 @@ export default function Chat() {
     useEffect(() => {
         // Criação da instância do socket
         socket.current = io('http://10.133.22.16:3000');
+        socket.current = io('http://10.133.22.16:3000');
 
         socket.current.on('connect', () => {
             console.log('Conectado ao servidor');
