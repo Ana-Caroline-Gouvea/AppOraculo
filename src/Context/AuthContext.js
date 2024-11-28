@@ -77,7 +77,7 @@ function AuthProvider({ children }) {
     }
 
     return (
-        <AuthContext.Provider value={{ logado, Login, error, page: page, setPage: setPage }}>
+        <AuthContext.Provider value={{ logado, Login, error, page: page, setPage: setPage, usuario: usuario, setUsuario: setUsuario }}>
             {children}
         </AuthContext.Provider>
     );
