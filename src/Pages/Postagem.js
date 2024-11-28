@@ -26,7 +26,7 @@ export default function Postagem() {
 
     async function createPost() {
         try {
-            const response = await fetch("http://10.133.22.12:5251/api/Postagem/CreatePostagem", {
+            const response = await fetch("http://10.133.22.6:5251/api/Postagem/CreatePostagem", {
                 method: 'POST',
                 headers: {
                     'Content-type': 'application/json; charset=UTF-8',
@@ -53,7 +53,7 @@ export default function Postagem() {
     }
 
     async function getComunidades() {
-        await fetch('http://10.133.22.12:5251/api/Comunidades/GetAllComunidades', {
+        await fetch('http://10.133.22.6:5251/api/Comunidades/GetAllComunidades', {
             method: 'GET',
             headers: {
                 'content-type': 'application/json'
@@ -65,7 +65,7 @@ export default function Postagem() {
     }
 
     async function getPosts() {
-        await fetch("http://10.133.22.26:5251/api/Postagem/GetAllPostagem",
+        await fetch("http://10.133.22.6:5251/api/Postagem/GetAllPostagem",
             {
                 method: "GET"
             }
