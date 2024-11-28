@@ -71,7 +71,6 @@ export default function Rotas() {
                         tabBarButton: () => null,
                         tabBarVisible: false,
                     }}
-                    
                     />
                      <Drawer.Screen name="Postagens"
                 component={Postagem} 
