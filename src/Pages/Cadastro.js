@@ -101,7 +101,7 @@ export default function Cadastro({ setCadastro }) {
                         value={email}
                     />
                     <TouchableOpacity style={css.input} onPress={() => setShowDatePicker(true)}>
-                        <Text style={{ color: data ? "#000" : "#aaa" }}>
+                        <Text style={{ color: data ? "#000" : "#000" }}>
                             {data ? formatDate(data) : "Data de Nascimento"}
                         </Text>
                     </TouchableOpacity>
@@ -168,22 +168,21 @@ const css = StyleSheet.create({
         marginTop: 25,
         padding: 10,
         borderRadius: 3,
-        backgroundColor: 'rgba(219, 219, 219, 0.37)',
+        backgroundColor: 'rgba(219, 219, 219, 0.7)',
         borderColor: '#8E44AD',
         opacity: 0.5,
         borderWidth: 0,
-        borderBottomWidth: 1,
+        borderBottomWidth: 2.5,
     },
     boxCadastro: {
         width: '87%',
         height: 630,
         borderRadius: 15,
-        backgroundColor: 'rgba(255, 255, 255, 0.19)',
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 160,
         borderColor: "#8E44AD",
-        borderWidth: 1.5,
+        borderWidth: 2,
     },
     imgLogo: {
         resizeMode: 'contain',

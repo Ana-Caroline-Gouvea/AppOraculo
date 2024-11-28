@@ -85,13 +85,12 @@ const css = StyleSheet.create({
     },
     box: {
         width: '80%',
-        backgroundColor: 'rgba(255, 255, 255, 0.2)',
         justifyContent: 'center',
         alignItems: 'center',
         height: 395,
         borderRadius: 10,
         borderColor: '#8E44AD',
-        borderWidth: 1.5,
+        borderWidth: 2,
     },
     input: {
         width: '90%',
@@ -100,10 +99,10 @@ const css = StyleSheet.create({
         padding: 10,
         borderRadius: 3,
         borderColor: '#8E44AD',
-        backgroundColor: 'rgba(219, 219, 219, 0.37)',
+        backgroundColor: 'rgba(219, 219, 219, 0.7)',
         opacity: 0.5,
         borderWidth: 0,
-        borderBottomWidth: 1,
+        borderBottomWidth: 2.5,
     },
     esqueciSenha: {
         width: '90%',
