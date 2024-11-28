@@ -1,8 +1,9 @@
-import React, { Component, useState }from 'react';
+import React, { Component, useContext, useEffect, useState }from 'react';
 import { StyleSheet, Text, View, TouchableWithoutFeedback, Animated, Alert } from 'react-native';
 import { AntDesign, Entypo, Ionicons,  MaterialCommunityIcons, MaterialIcons   } from '@expo/vector-icons'
 import Postagem from '../Pages/Postagem';
 import { useNavigation } from '@react-navigation/native';
+import { AuthContext } from '../Context/AuthContext';
 
 
 export default function FabButonTeste(props)
@@ -16,7 +17,7 @@ export default function FabButonTeste(props)
 class FabButton extends Component{
 
 
-
+    
     animation = new Animated.Value(0);
     toggleMenu = () =>  {
         const toValue = this.open ? 0 : 1
@@ -35,7 +36,7 @@ class FabButton extends Component{
     render(){ 
 
         const {navigation} = this.props;
-
+    
 
 
         const chatStyle ={
@@ -109,7 +110,10 @@ class FabButton extends Component{
                 }
             ]
         }
+
         
+        
+
         return (
             <View style={[css.Container, this.props.style]}>
                 <TouchableWithoutFeedback onPress={() => navigation.navigate( "Postagens" ) }>

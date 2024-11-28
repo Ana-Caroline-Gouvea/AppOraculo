@@ -1,4 +1,4 @@
-import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView, Image, StyleSheet, Alert } from 'react-native';
 import React, { useContext, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage'; // Importar o AsyncStorage
 import { AuthContext } from '../Context/AuthContext';
@@ -9,14 +9,15 @@ export default function Login({ setCadastro }) {
     const { Login, error } = useContext(AuthContext);
 
     async function RealizaLogin() {
+        if (!email.trim() || !senha.trim()) {
+            Alert.alert("Erro", "Por favor, preencha todos os campos obrigatórios.");
+            return;
+        }
         try {
-            const userData = await Login(email, senha); // Chama a função de login do contexto
+            const userData = await Login(email, senha); 
             if (userData && userData.usuarioId) {
-                // Salva o ID do usuário no AsyncStorage
                 await AsyncStorage.setItem('userId', userData.usuarioId.toString());
                 console.log('Login realizado com sucesso. ID salvo:', userData.usuarioId);
-            } else {
-                console.error('Erro: Usuário não retornou com um ID válido.');
             }
         } catch (error) {
             console.error('Erro ao realizar login:', error);
