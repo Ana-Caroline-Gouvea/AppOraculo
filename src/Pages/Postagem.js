@@ -90,6 +90,7 @@ export default function Postagem() {
             <TouchableOpacity style={css.newpost}  onPress={() => { setCriarPostagem(true) }}>
                 <Text style={css.textbutton}>Criar uma postagem</Text>
             </TouchableOpacity>
+            <View style={css.boxallpost}>
             {postagens &&
                 <FlatList
                     data={postagens}
@@ -98,6 +99,7 @@ export default function Postagem() {
                     style={css.flatlist}
                 />
             }
+            </View>
             </View>
             :
             <View>
@@ -156,7 +158,7 @@ const css = StyleSheet.create({
     },
     flatlist:{
         marginTop: 50,
-        marginBottom: 100
+        marginBottom: 500
     },
     newpost:{
         alignSelf: "center",
@@ -216,8 +218,7 @@ const css = StyleSheet.create({
         alignSelf: 'center',
         fontWeight: 'bold',
         fontSize: 18,
-    }
-    
+    },
 
 })
 
