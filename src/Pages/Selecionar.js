@@ -8,7 +8,7 @@ export default function Selecionar({ setSelecionar, setHome, navigation }) {
 
   const [selecionado, setSelecionado] = useState()
   async function getComunidadeUsuario() {
-    await fetch("http://10.133.22.26:5251/api/Comunidades/GetAllComunidades",
+    await fetch("http://10.133.22.6:5251/api/Comunidades/GetAllComunidades",
       {
         method: "GET"
       }
