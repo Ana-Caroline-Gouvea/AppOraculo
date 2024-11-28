@@ -40,7 +40,7 @@ export default function Rotas() {
 
         <NavigationContainer>
             <Drawer.Navigator
-                initialRouteName="Home"
+                initialRouteName="Selecionar"
                 screenOptions={{
                     headerTitle: (props) => <MaterialCommunityIcons name="magnify" style={css.lupa} />,
                     headerStyle: { backgroundColor: 'white', height: 100 }
