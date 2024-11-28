@@ -9,6 +9,7 @@ function AuthProvider({ children }) {
     const [logado, setLogado] = useState(false); 
     const [error, setError] = useState(false); 
     const [page, setPage] = useState();
+    const [usuario, setUsuario ] = useState();
 
 
     // Função de Login
@@ -77,7 +78,7 @@ function AuthProvider({ children }) {
     }
 
     return (
-        <AuthContext.Provider value={{ logado, Login, error, page: page, setPage: setPage }}>
+        <AuthContext.Provider value={{ logado, Login, error, page: page, setPage: setPage, usuario: usuario, setUsuario: setUsuario }}>
             {children}
         </AuthContext.Provider>
     );
