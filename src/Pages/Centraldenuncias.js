@@ -1,48 +1,91 @@
-import React, { useEffect, useState } from 'react'
-import { ScrollView, StyleSheet, View, Text, Pressable, TextInput } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
-import Select from '../Components/Select'
+import React, { useEffect, useState } from 'react';
+import { ScrollView, StyleSheet, View, Text, Pressable, TextInput, Alert } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import Select from '../Components/Select';
 
 export default function Centraldenuncias() {
+    const [checkbox1, setCheckbx1] = useState(false);
+    const [checkbox2, setCheckbx2] = useState(false);
+    const [checkbox3, setCheckbx3] = useState(false);
+    const [checkbox4, setCheckbx4] = useState(false);
+    const [checkbox5, setCheckbx5] = useState(false);
+    const [checkbox6, setCheckbx6] = useState(false);
 
-    const [checkbox1, setCheckbx1] = useState(false)
-    const [checkbox2, setCheckbx2] = useState(false)
-    const [checkbox3, setCheckbx3] = useState(false)
-    const [checkbox4, setCheckbx4] = useState(false)
-    const [checkbox5, setCheckbx5] = useState(false)
-    const [checkbox6, setCheckbx6] = useState(false)
+    const [outro, setOutro] = useState('');
+    const [descricao, setDescricao] = useState('');
+    const [comunidade, setComunidade] = useState('');
+    const [email, setEmail] = useState('');
+    const [comunidades, setComunidades] = useState([]);
 
-    const [comunidades, setComunidades ] = useState();
-    const [comunidade, setComunidade ] = useState();
-
-
-
+    // Função para buscar comunidades
     async function getComunidades() {
-        await fetch('http://10.133.22.16:5251/api/Comunidades/GetAllComunidades', {
-            method: 'GET',
-            headers: {
-                'content-type': 'application/json'
-            }
-        })
-        .then( res => res.json() )
-        .then( json => setComunidades( json ) )
-        .catch( err => console.log( err ) )
+        try {
+            const res = await fetch('http://10.133.22.26:5251/api/Comunidades/GetAllComunidades', {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' },
+            });
+            const json = await res.json();
+            setComunidades(json);
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     useEffect(() => {
         getComunidades();
-    }, [])
+    }, []);
+
+    // Validação do formulário
+    const validarFormulario = () => {
+        const algumCheckboxMarcado =
+            checkbox1 || checkbox2 || checkbox3 || checkbox4 || checkbox5 || checkbox6;
+
+        // Verificar se ao menos uma checkbox foi marcada
+        if (!algumCheckboxMarcado) {
+            Alert.alert('Erro', 'Selecione pelo menos um tipo de violação.');
+            return false;
+        }
+
+        // Verificar se "Outro" foi selecionado, mas está vazio
+        if (checkbox6 && outro.trim() === '') {
+            Alert.alert('Erro', 'Especifique a violação em "Outro".');
+            return false;
+        }
+
+        // Verificar se a descrição foi preenchida
+        if (descricao.trim() === '') {
+            Alert.alert('Erro', 'Forneça uma descrição detalhada do ocorrido.');
+            return false;
+        }
+
+        // Verificar se a comunidade foi selecionada
+        if (String(comunidade).trim() === '') {
+            Alert.alert('Erro', 'Selecione uma comunidade ou tópico relacionado.');
+            return false;
+        }
+
+        if(email.trim() === ''){
+            Alert.alert('Erro', 'Forneça um email válidado para contato.');
+            return false;
+        }
+
+        return true;
+    };
+
+    // Função para enviar a denúncia
+    const enviarDenuncia = () => {
+        if (validarFormulario()) {
+            Alert.alert('Sucesso', 'Denúncia enviada com sucesso!');
+        }
+    };
+
     return (
         <ScrollView>
             <View style={css.boxtitle}>
                 <Text style={css.title}>Central de Denúncias</Text>
             </View>
             <View style={css.textbox}>
-                <Text style={css.text}>A comunidade Oráculo é um espaço seguro e respeitoso para a troca
-                    de ideias e discussões culturais. Caso você tenha presenciado ou sofrido
-                    comportamentos inadequados, violação das regras ou qualquer outro tipo de conduta
-                    imprópria, utilize esta página para reportar uma denúncia. Nosso time de moderação
-                    levará todas as denúncias a sério e tomará as devidas providências.</Text>
+                <Text style={css.text}>A comunidade Oráculo é um espaço seguro e respeitoso para a troca de ideias e discussões culturais. Caso você tenha presenciado ou sofrido comportamentos inadequados, violação das regras ou qualquer outro tipo de conduta imprópria, utilize esta página para reportar uma denúncia. Nosso time de moderação levará todas as denúncias a sério e tomará as devidas providências.</Text>
 
                 <View style={css.subtitulobox}>
                     <Text style={css.subtitulotext}>Como Funciona o Processo de Denúncia?</Text>
@@ -60,9 +103,10 @@ export default function Centraldenuncias() {
                     <Text style={css.text}>Ação corretiva: Se a denúncia for comprovada, medidas serão tomadas, que podem incluir advertências, suspensões ou banimentos, dependendo da gravidade da situação.</Text>
                 </View>
                 <View style={css.topic}>
-                    <Text style={css.bullet}>1-</Text>
+                    <Text style={css.bullet}>4-</Text>
                     <Text style={css.text}>Feedback: Você será notificado sobre a decisão da moderação através do e-mail cadastrado.</Text>
                 </View>
+
                 <View style={css.subtitulobox}>
                     <Text style={css.subtitulotext}>Formulário de Denúncia</Text>
                 </View>
@@ -85,93 +129,81 @@ export default function Centraldenuncias() {
                     <Text style={css.perg}>Qual o tipo de violação?</Text>
                 </View>
 
-
                 <View style={css.Boxcheck}>
-                    <Pressable style={[css.check, { backgroundColor: checkbox1 ? "#7C25AE" : "#F4F4F4" }]} onPress={() => setCheckbx1(current => !current)}>
-                    </Pressable>
-                    <Text style={css.Boxchecktext} >Comportamento abusivo ou ofensivo</Text>
+                    <Pressable style={[css.check, { backgroundColor: checkbox1 ? "#7C25AE" : "#F4F4F4" }]} onPress={() => setCheckbx1(current => !current)} />
+                    <Text style={css.Boxchecktext}>Comportamento abusivo ou ofensivo</Text>
                 </View>
 
                 <View style={css.Boxcheck}>
-                    <Pressable style={[css.check, { backgroundColor: checkbox2 ? "#7C25AE" : "#F4F4F4" }]} onPress={() => setCheckbx2(current => !current)}>
-                    </Pressable>
+                    <Pressable style={[css.check, { backgroundColor: checkbox2 ? "#7C25AE" : "#F4F4F4" }]} onPress={() => setCheckbx2(current => !current)} />
                     <Text style={css.Boxchecktext}>Discurso de ódio</Text>
                 </View>
 
                 <View style={css.Boxcheck}>
-                    <Pressable style={[css.check, { backgroundColor: checkbox3 ? "#7C25AE" : "#F4F4F4" }]} onPress={() => setCheckbx3(current => !current)}>
-                    </Pressable>
+                    <Pressable style={[css.check, { backgroundColor: checkbox3 ? "#7C25AE" : "#F4F4F4" }]} onPress={() => setCheckbx3(current => !current)} />
                     <Text style={css.Boxchecktext}>Spam ou publicidade indesejada</Text>
                 </View>
 
                 <View style={css.Boxcheck}>
-                    <Pressable style={[css.check, { backgroundColor: checkbox4 ? "#7C25AE" : "#F4F4F4" }]} onPress={() => setCheckbx4(current => !current)}>
-                    </Pressable>
+                    <Pressable style={[css.check, { backgroundColor: checkbox4 ? "#7C25AE" : "#F4F4F4" }]} onPress={() => setCheckbx4(current => !current)} />
                     <Text style={css.Boxchecktext}>Compartilhamento de conteúdo impróprio</Text>
                 </View>
 
                 <View style={css.Boxcheck}>
-                    <Pressable style={[css.check, { backgroundColor: checkbox5 ? "#7C25AE" : "#F4F4F4" }]} onPress={() => setCheckbx5(current => !current)}>
-                    </Pressable>
+                    <Pressable style={[css.check, { backgroundColor: checkbox5 ? "#7C25AE" : "#F4F4F4" }]} onPress={() => setCheckbx5(current => !current)} />
                     <Text style={css.Boxchecktext}>Violação de direitos autorais</Text>
                 </View>
 
                 <View style={css.Boxcheck}>
-                    <Pressable style={[css.check, { backgroundColor: checkbox6 ? "#7C25AE" : "#F4F4F4" }]} onPress={() => setCheckbx6(current => !current)}>
-                    </Pressable>
+                    <Pressable style={[css.check, { backgroundColor: checkbox6 ? "#7C25AE" : "#F4F4F4" }]} onPress={() => setCheckbx6(current => !current)} />
                     <Text style={css.Boxchecktext}>Outro (especificar)</Text>
                 </View>
-                <Text style={css.text}>Em caso de outro, especificar:</Text>
 
-                <TextInput style={css.input}  />
+                {checkbox6 && (
+                    <TextInput
+                        style={css.input}
+                        placeholder="Especifique a violação"
+                        value={outro}
+                        onChangeText={setOutro}
+                    />
+                )}
 
-                <View style={css.topic}>
-                    <Text style={css.bullet}>2 - </Text>
-                    <Text style={css.perg}>Qual o tipo de violação?</Text>
-                </View>
-
-                <Text style={css.text}>Forneça uma descrição detalhada do ocorrido. Inclua nomes de usuários, datas e qualquer outra informação relevante.</Text>
-                <TextInput style={css.input} />
+                <Text style={css.text}>Descrição detalhada do ocorrido:</Text>
+                <TextInput
+                    style={css.input}
+                    placeholder="Descreva o ocorrido"
+                    value={descricao}
+                    onChangeText={setDescricao}
+                />
 
                 <View style={css.topic}>
                     <Text style={css.bullet}>3 - </Text>
-                    <Text style={css.perg}> Anexe provas (opcional):</Text>
+                    <Text style={css.perg}>Anexe provas (opcional):</Text>
                 </View>
-
-                <Text style={css.text}>Você pode anexar capturas de tela, links ou qualquer material que possa ajudar nossa equipe a entender melhor a situação.</Text>
-                <TextInput style={css.input} />
-
+                <TextInput style={css.input} placeholder="Anexar provas (opcional)" />
 
                 <View style={css.topic}>
                     <Text style={css.bullet}>4 - </Text>
-                    <Text style={css.perg}>Comunidade ou Tópico relacionado:</Text>
+                    <Text style={css.perg}>Comunidade:</Text>
                 </View>
+                <Select data={comunidades} setComunidade={setComunidade} />
 
-                <Text style={css.text}>Indique em qual comunidade ou tópico a violação ocorreu, se aplicável.</Text>
+                <Text style={css.text}>E-mail para contato:</Text>
+                <TextInput
+                    style={css.input}
+                    placeholder="Seu e-mail"
+                    value={email}
+                    onChangeText={setEmail}
+                />
 
-                <Select data={comunidades} setComunidade={setComunidade}/>
-
-                <View style={css.topic}>
-                    <Text style={css.bullet}>5 - </Text>
-                    <Text style={css.perg}> Seu e-mail para contato (opcional):</Text>
-                </View>
-
-                <TextInput style={css.input} />
-
-                <TouchableOpacity style={css.btn}>
+                <TouchableOpacity style={css.btn} onPress={enviarDenuncia}>
                     <Text style={css.btntext}>Enviar Denúncia</Text>
                 </TouchableOpacity>
-
-
             </View>
         </ScrollView>
-
-
-
-
-
-    )
+    );
 }
+
 
 
 const css = StyleSheet.create({
@@ -193,7 +225,8 @@ const css = StyleSheet.create({
     text: {
         fontSize: 16,
         textAlign: "justify",
-        marginTop: 5
+        marginTop: 5,
+        marginBottom: 8
     },
     subtitulobox: {
         alignItems: "center",

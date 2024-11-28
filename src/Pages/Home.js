@@ -8,7 +8,6 @@ export default function Home() {
 
   return (
     <View style={css.container}>
-      <HeaderBusca />
       <ScrollView contentContainerStyle={css.scrollContainer}>
         {/* Título com borda roxa */}
         <View style={css.titleContainer}>

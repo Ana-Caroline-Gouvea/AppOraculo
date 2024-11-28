@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export const AuthContext = createContext(0);
 
 function AuthProvider({ children }) {
+
     const [logado, setLogado] = useState(false); 
     const [error, setError] = useState(false); 
     const [page, setPage] = useState();
@@ -49,6 +50,7 @@ function AuthProvider({ children }) {
 
                 // Verifica se o JSON contém um ID válido do usuário
                 if (json && json.usuarioId) {
+                    setUsuario( json );
                     setLogado(true); // Se o ID do usuário for válido, define 'logado' como true
                     setError(false); // Reseta o estado de erro
                     await AsyncStorage.setItem('userId', json.usuarioId.toString()); // Armazena o ID no AsyncStorage
