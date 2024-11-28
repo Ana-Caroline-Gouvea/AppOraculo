@@ -42,8 +42,7 @@ export default function Rotas() {
             <Drawer.Navigator
                 initialRouteName="Selecionar"
                 screenOptions={{
-                    headerTitle: (props) => <MaterialCommunityIcons name="magnify" style={css.lupa} />,
-                    headerStyle: { backgroundColor: 'white', height: 100 }
+                    headerStyle: { backgroundColor: '#7C25AE', height: 100 }
                 }}>
                 <Drawer.Screen name="Home" component={Home} />
                 <Drawer.Screen name="Regras" component={Regras} />
@@ -71,7 +70,6 @@ export default function Rotas() {
                         tabBarButton: () => null,
                         tabBarVisible: false,
                     }}
-                    
                     />
                      <Drawer.Screen name="Postagens"
                 component={Postagem} 

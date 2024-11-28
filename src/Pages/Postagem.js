@@ -26,7 +26,7 @@ export default function Postagem() {
 
     async function createPost() {
         try {
-            const response = await fetch("http://10.133.22.12:5251/api/Postagem/CreatePostagem", {
+            const response = await fetch("http://10.133.22.6:5251/api/Postagem/CreatePostagem", {
                 method: 'POST',
                 headers: {
                     'Content-type': 'application/json; charset=UTF-8',
@@ -53,7 +53,7 @@ export default function Postagem() {
     }
 
     async function getComunidades() {
-        await fetch('http://10.133.22.12:5251/api/Comunidades/GetAllComunidades', {
+        await fetch('http://10.133.22.6:5251/api/Comunidades/GetAllComunidades', {
             method: 'GET',
             headers: {
                 'content-type': 'application/json'
@@ -65,7 +65,7 @@ export default function Postagem() {
     }
 
     async function getPosts() {
-        await fetch("http://10.133.22.26:5251/api/Postagem/GetAllPostagem",
+        await fetch("http://10.133.22.6:5251/api/Postagem/GetAllPostagem",
             {
                 method: "GET"
             }
@@ -90,6 +90,7 @@ export default function Postagem() {
             <TouchableOpacity style={css.newpost}  onPress={() => { setCriarPostagem(true) }}>
                 <Text style={css.textbutton}>Criar uma postagem</Text>
             </TouchableOpacity>
+            <View style={css.boxallpost}>
             {postagens &&
                 <FlatList
                     data={postagens}
@@ -98,6 +99,7 @@ export default function Postagem() {
                     style={css.flatlist}
                 />
             }
+            </View>
             </View>
             :
             <View>
@@ -156,7 +158,7 @@ const css = StyleSheet.create({
     },
     flatlist:{
         marginTop: 50,
-        marginBottom: 100
+        marginBottom: 500
     },
     newpost:{
         alignSelf: "center",
@@ -216,8 +218,7 @@ const css = StyleSheet.create({
         alignSelf: 'center',
         fontWeight: 'bold',
         fontSize: 18,
-    }
-    
+    },
 
 })
 
