@@ -123,7 +123,7 @@ export default function Centraldenuncias() {
                 </View>
                 <Text style={css.text}>Em caso de outro, especificar:</Text>
 
-                <TextInput style={css.input} requirete />
+                <TextInput style={css.input}  />
 
                 <View style={css.topic}>
                     <Text style={css.bullet}>2 - </Text>

@@ -25,6 +25,10 @@ export default function Cadastro({ setCadastro }) {
     };
 
     async function Cadastrar() {
+        if (!nome.trim() || !email.trim() || !senha.trim() || !confirmarSenha.trim()) {
+            Alert.alert("Erro", "Por favor, preencha todos os campos obrigatórios.");
+            return;
+        }
         const fotoPerfilPadrao = "https://static.vecteezy.com/ti/vetor-gratis/p1/20765399-padrao-perfil-conta-desconhecido-icone-preto-silhueta-gratis-vetor.jpg";
         if (senha === confirmarSenha) {
             const fotoParaSalvar = fotoPerfil.trim() !== "" ? fotoPerfil : fotoPerfilPadrao;

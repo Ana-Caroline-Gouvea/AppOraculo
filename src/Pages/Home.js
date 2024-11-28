@@ -1,8 +1,11 @@
 import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import HeaderBusca from '../Components/HeaderBusca';
+import { AuthContext } from '../Context/AuthContext';
 
 export default function Home() {
+
+
   return (
     <View style={css.container}>
       <HeaderBusca />

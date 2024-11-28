@@ -1,7 +1,7 @@
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
-import { Button, View, Text, StyleSheet,  } from 'react-native';
+import { Button, View, Text, StyleSheet, } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../Context/AuthContext';
 import Chat from '../Pages/chat2';
 import Regras from '../Pages/Regras';
@@ -22,33 +22,35 @@ import Perfil from '../Pages/Perfil';
 
 function NotificationsScreen({ navigation }) {
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Button onPress={() => navigation.goBack()} title="Go back home" />
-      </View>
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+            <Button onPress={() => navigation.goBack()} title="Go back home" />
+        </View>
     );
-  }
-  
- 
+}
+
+
 const Drawer = createDrawerNavigator();
 
 export default function Rotas() {
 
-    const {logado} = useContext( AuthContext );
-    const [ cadastro, setCadastro ] = useState();
+    const { logado } = useContext(AuthContext);
+    const [cadastro, setCadastro] = useState();
 
-    if ( !logado && !cadastro) {
+    if (!logado && !cadastro) {
         return (<Login setCadastro={setCadastro} />)
     }
 
-    if (cadastro && !logado ) {
+    if (cadastro && !logado) {
         return (<Cadastro setCadastro={setCadastro} />)
     }
-    
+
     return (
-    
-        <NavigationContainer> 
-            <Drawer.Navigator 
-                initialRouteName="Home"
+
+
+
+        <NavigationContainer>
+            <Drawer.Navigator
+                initialRouteName="Selecionar"
                 screenOptions={{
                     headerTitle: (props) => <HeaderBusca {...props} />,
                     headerStyle: { backgroundColor: 'white', height: 100 }
@@ -64,13 +66,11 @@ export default function Rotas() {
                 <Drawer.Screen name="Eventos" component={Eventos} />
                 <Drawer.Screen name="Mais Comentados" component={MaisComentados} />
                 <Drawer.Screen name="Selecionar" component={Selecionar} />
-                <Drawer.Screen name="Login" component={Login} />
-                
             </Drawer.Navigator>
             <FabButonTeste />
         </NavigationContainer>
-        
-      );
+
+    );
 }
 const css = StyleSheet.create({
     sumir:{

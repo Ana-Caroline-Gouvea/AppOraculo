@@ -7,13 +7,14 @@ export const AuthContext = createContext(0);
 function AuthProvider({ children }) {
     const [logado, setLogado] = useState(false); 
     const [error, setError] = useState(false); 
+    const [page, setPage] = useState();
 
 
     // Função de Login
     async function Login(email, senha) {
         if (email !== "" && senha !== "") {
             try {
-                const response = await fetch('http://10.133.22.16:5251/api/Usuario/LoginUsuario', {
+                const response = await fetch('http://10.133.22.18:5251/api/Usuario/LoginUsuario', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -74,7 +75,7 @@ function AuthProvider({ children }) {
     }
 
     return (
-        <AuthContext.Provider value={{ logado, Login, error }}>
+        <AuthContext.Provider value={{ logado, Login, error, page: page, setPage: setPage }}>
             {children}
         </AuthContext.Provider>
     );
