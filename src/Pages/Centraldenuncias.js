@@ -18,7 +18,7 @@ export default function Centraldenuncias() {
 
 
     async function getComunidades() {
-        await fetch('http://10.133.22.16:5251/api/Comunidades/GetAllComunidades', {
+        await fetch('http://10.133.22.26:5251/api/Comunidades/GetAllComunidades', {
             method: 'GET',
             headers: {
                 'content-type': 'application/json'
