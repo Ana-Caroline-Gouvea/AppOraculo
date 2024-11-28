@@ -1,7 +1,7 @@
 import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { Button, View, Text, StyleSheet, } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../Context/AuthContext';
 import Chat from '../Pages/chat2';
 import Regras from '../Pages/Regras';
@@ -40,7 +40,7 @@ export default function Rotas() {
 
         <NavigationContainer>
             <Drawer.Navigator
-                initialRouteName="Home"
+                initialRouteName="Selecionar"
                 screenOptions={{
                     headerTitle: (props) => <MaterialCommunityIcons name="magnify" style={css.lupa} />,
                     headerStyle: { backgroundColor: 'white', height: 100 }

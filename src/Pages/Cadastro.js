@@ -25,12 +25,16 @@ export default function Cadastro({ setCadastro }) {
     };
 
     async function Cadastrar() {
+        if (!nome.trim() || !email.trim() || !senha.trim() || !confirmarSenha.trim()) {
+            Alert.alert("Erro", "Por favor, preencha todos os campos obrigatórios.");
+            return;
+        }
         const fotoPerfilPadrao = "https://static.vecteezy.com/ti/vetor-gratis/p1/20765399-padrao-perfil-conta-desconhecido-icone-preto-silhueta-gratis-vetor.jpg";
         if (senha === confirmarSenha) {
             const fotoParaSalvar = fotoPerfil.trim() !== "" ? fotoPerfil : fotoPerfilPadrao;
 
             console.log("Dados de cadastro:", { nome, email, apelido, data, senha, fotoPerfil: fotoParaSalvar });
-            await fetch('http://10.133.22.12:5251/api/Usuario/CreateUsuario', {
+            await fetch('http://10.133.22.18:5251/api/Usuario/CreateUsuario', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',

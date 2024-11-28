@@ -1,7 +1,10 @@
 import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+
 
 export default function Home() {
+
+
   return (
     <View style={css.container}>
       <ScrollView contentContainerStyle={css.scrollContainer}>
