@@ -9,6 +9,7 @@ function AuthProvider({ children }) {
     const [logado, setLogado] = useState(false); 
     const [error, setError] = useState(false); 
     const [page, setPage] = useState();
+    const [usuario, setUsuario] = useState();
 
 
     // Função de Login
