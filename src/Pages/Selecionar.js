@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { View, StyleSheet, ScrollView, Text, FlatList, TouchableOpacity } from 'react-native'
 import SelecionarComp from '../Components/SelecionarComp'
+import { AuthContext } from '../Context/AuthContext'
+import { useNavigation } from '@react-navigation/native'
 
-export default function Selecionar() {
+export default function Selecionar({ setSelecionar, setHome, navigation }) {
 
   const [selecionado, setSelecionado] = useState()
   async function getComunidadeUsuario() {
-    await fetch("http://10.133.22.16:5251/api/Comunidades/GetAllComunidades",
+    await fetch("http://10.133.22.6:5251/api/Comunidades/GetAllComunidades",
       {
         method: "GET"
       }
@@ -37,7 +39,7 @@ export default function Selecionar() {
         />
       }
       <View style={css.boxbtn}>
-        <TouchableOpacity style={css.btn}>
+        <TouchableOpacity style={css.btn} onPress={ () => navigation.navigate( "Home" )}>
           <Text style={css.btntext}>Concluído</Text>
         </TouchableOpacity>
       </View>

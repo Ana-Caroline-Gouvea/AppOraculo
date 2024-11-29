@@ -42,7 +42,9 @@ const css = StyleSheet.create({
     width: "35%",
     height: 200,
     objectFit: "cover",
-    resizeMode: 'contain'
+    resizeMode: 'contain',
+    borderBottomLeftRadius: 5, 
+    borderTopLeftRadius: 5, 
   },
   caixatexto:{
     width: "65%",
@@ -51,6 +53,8 @@ const css = StyleSheet.create({
     borderRadius: 5,
     alignSelf: "flex-end",
     padding: 10,
+    borderBottomRightRadius: 5, 
+    borderTopRightRadius: 5, 
   },
   titulo:{
     fontWeight: "bold",

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, TouchableWithoutFeedback, Animated, PanResponder } from 'react-native';
 import { AntDesign, Ionicons, MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { AuthContext } from '../Context/AuthContext';
 
 export default function FabButonTeste(props) {
   const navigation = useNavigation();

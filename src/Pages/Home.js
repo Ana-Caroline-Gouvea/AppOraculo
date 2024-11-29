@@ -1,11 +1,12 @@
 import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
-import React from 'react';
-import HeaderBusca from '../Components/HeaderBusca';
+import React, { useContext, useEffect } from 'react';
+
 
 export default function Home() {
+
+
   return (
     <View style={css.container}>
-      <HeaderBusca />
       <ScrollView contentContainerStyle={css.scrollContainer}>
         {/* Título com borda roxa */}
         <View style={css.titleContainer}>
