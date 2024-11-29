@@ -21,7 +21,7 @@ export default function Chat() {
             }
 
             // Requisição para buscar os dados do usuário
-            const response = await fetch(`http://10.133.22.6:5251/api/Usuario/GetUsuarioId/${userId}`);
+            const response = await fetch(`http://10.133.22.18:5251/api/Usuario/GetUsuarioId/${userId}`);
             const data = await response.json();
 
             // Verificar e atualizar os estados com os dados do usuário
@@ -40,7 +40,7 @@ export default function Chat() {
     useEffect(() => {
         // Criação da instância do socket
 
-        socket.current = io('http://10.133.22.25:3000');
+        socket.current = io('http://10.133.22.16:3000');
 
         socket.current.on('connect', () => {
             console.log('Conectado ao servidor');
