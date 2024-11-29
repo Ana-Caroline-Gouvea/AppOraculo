@@ -32,7 +32,7 @@ export default function Cadastro({ setCadastro }) {
         const fotoPerfilPadrao = "https://static.vecteezy.com/ti/vetor-gratis/p1/20765399-padrao-perfil-conta-desconhecido-icone-preto-silhueta-gratis-vetor.jpg";
         if (senha === confirmarSenha) {
             const fotoParaSalvar = fotoPerfil.trim() !== "" ? fotoPerfil : fotoPerfilPadrao;
-
+s
             console.log("Dados de cadastro:", { nome, email, apelido, data, senha, fotoPerfil: fotoParaSalvar });
             await fetch('http://10.133.22.18:5251/api/Usuario/CreateUsuario', {
                 method: 'POST',
