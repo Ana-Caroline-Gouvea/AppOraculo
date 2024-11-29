@@ -34,7 +34,7 @@ export default function Cadastro({ setCadastro }) {
             const fotoParaSalvar = fotoPerfil.trim() !== "" ? fotoPerfil : fotoPerfilPadrao;
 
             console.log("Dados de cadastro:", { nome, email, apelido, data, senha, fotoPerfil: fotoParaSalvar });
-            await fetch('http://10.133.22.6:5251/api/Usuario/CreateUsuario', {
+            await fetch('http://10.133.22.25:5251/api/Usuario/CreateUsuario', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',

@@ -65,7 +65,7 @@ export default function Postagem() {
     }
 
     async function getPosts() {
-        await fetch("http://10.133.22.6:5251/api/Postagem/GetAllPostagem",
+        await fetch("http://10.133.22.25:5251/api/Postagem/GetAllPostagem",
             {
                 method: "GET"
             }
