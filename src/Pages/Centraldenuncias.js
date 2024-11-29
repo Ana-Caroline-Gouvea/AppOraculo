@@ -20,7 +20,7 @@ export default function Centraldenuncias() {
     // Função para buscar comunidades
     async function getComunidades() {
         try {
-            const res = await fetch('http://10.133.22.26:5251/api/Comunidades/GetAllComunidades', {
+            const res = await fetch('http://10.133.22.6:5251/api/Comunidades/GetAllComunidades', {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' },
             });
